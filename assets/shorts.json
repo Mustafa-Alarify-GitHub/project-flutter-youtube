@@ -1,13 +1,156 @@
 [
   {
-    "id": "short1",
-    "title": "Funny Moment #1",
+    "id": "vid_9921",
+    "title": "تحدي الضحك: لا تحاول الابتسام 😂",
     "video_path": "assets/videos/reels/1.mp4",
     "thumbnail_path": "assets/images/series1_thumb.jpg",
     "type": "short",
+    "duration": "0:58",
+    "uploader": "مبدع الكوميديا",
+    "views": "450K",
+    "upload_date": "منذ يومين"
+  },
+  {
+    "id": "vlog_x2",
+    "title": "أغرب ردة فعل في العالم! 😲",
+    "video_path": "assets/videos/reels/2.mp4",
+    "thumbnail_path": "assets/images/series1_thumb.jpg",
+    "type": "short",
+    "duration": "0:30",
+    "uploader": "عالم العجائب",
+    "views": "1.2M",
+    "upload_date": "منذ 5 ساعات"
+  },
+  {
+    "id": "sk_884",
+    "title": "مهارات كرة قدم خيالية ✨",
+    "video_path": "assets/videos/reels/3.mp4",
+    "thumbnail_path": "assets/images/series1_thumb.jpg",
+    "type": "short",
+    "duration": "0:12",
+    "uploader": "ساحر الكرة",
+    "views": "89K",
+    "upload_date": "منذ 10 دقائق"
+  },
+  {
+    "id": "fast_04",
+    "title": "طريقة عمل أسرع بيتزا في المنزل 🍕",
+    "video_path": "assets/videos/reels/4.mp4",
+    "thumbnail_path": "assets/images/series1_thumb.jpg",
+    "type": "short",
+    "duration": "0:45",
+    "uploader": "شيف تيك توك",
+    "views": "3.5M",
+    "upload_date": "منذ أسبوع"
+  },
+  {
+    "id": "animal_v",
+    "title": "قطط مضحكة جداً 🐈",
+    "video_path": "assets/videos/reels/2.mp4",
+    "thumbnail_path": "assets/images/series1_thumb.jpg",
+    "type": "short",
     "duration": "0:15",
-    "uploader": "Shorts King",
-    "views": "2M",
-    "upload_date": "1 hour ago"
+    "uploader": "عالم الحيوان",
+    "views": "15M",
+    "upload_date": "منذ ساعة"
+  },
+  {
+    "id": "tech_rev",
+    "title": "ميزة سرية في أيفون لا يعرفها أحد!",
+    "video_path": "assets/videos/reels/6.mp4",
+    "thumbnail_path": "assets/images/series1_thumb.jpg",
+    "type": "short",
+    "duration": "0:50",
+    "uploader": "مهووس التقنية",
+    "views": "210K",
+    "upload_date": "أمس"
+  },
+  {
+    "id": "travel_9",
+    "title": "أجمل شواطئ المالديف 🏖️",
+    "video_path": "assets/videos/reels/7.mp4",
+    "thumbnail_path": "assets/images/series1_thumb.jpg",
+    "type": "short",
+    "duration": "0:22",
+    "uploader": "حول العالم",
+    "views": "500K",
+    "upload_date": "منذ 3 أيام"
+  },
+  {
+    "id": "gamer_pro",
+    "title": "لقطة مستحيلة في ببجي! 🔥",
+    "video_path": "assets/videos/reels/8.mp4",
+    "thumbnail_path": "assets/images/series1_thumb.jpg",
+    "type": "short",
+    "duration": "0:40",
+    "uploader": "محترف الألعاب",
+    "views": "75K",
+    "upload_date": "منذ 4 ساعات"
+  },
+  {
+    "id": "fit_33",
+    "title": "تمرين صباحي في دقيقتين 💪",
+    "video_path": "assets/videos/reels/9.mp4",
+    "thumbnail_path": "assets/images/series1_thumb.jpg",
+    "type": "short",
+    "duration": "0:59",
+    "uploader": "صحتك أولاً",
+    "views": "1.1M",
+    "upload_date": "منذ شهر"
+  },
+  {
+    "id": "music_01",
+    "title": "عزف بيانو هادئ للاسترخاء 🎹",
+    "video_path": "assets/videos/reels/10.mp4",
+    "thumbnail_path": "assets/images/series1_thumb.jpg",
+    "type": "short",
+    "duration": "0:35",
+    "uploader": "نغمات هادئة",
+    "views": "320K",
+    "upload_date": "منذ 15 ساعة"
+  },
+  {
+    "id": "life_hacks",
+    "title": "خدع منزلية ستسهل حياتك 🛠️",
+    "video_path": "assets/videos/reels/11.mp4",
+    "thumbnail_path": "assets/images/series1_thumb.jpg",
+    "type": "short",
+    "duration": "0:48",
+    "uploader": "أفكار ذكية",
+    "views": "2.8M",
+    "upload_date": "منذ ساعتين"
+  },
+  {
+    "id": "science_fact",
+    "title": "لماذا السماء زرقاء؟ في 15 ثانية",
+    "video_path": "assets/videos/reels/12.mp4",
+    "thumbnail_path": "assets/images/series1_thumb.jpg",
+    "type": "short",
+    "duration": "0:15",
+    "uploader": "مختبر المعلومات",
+    "views": "900K",
+    "upload_date": "منذ أسبوعين"
+  },
+  {
+    "id": "art_draw",
+    "title": "رسم بورتريه في ثوانٍ 🎨",
+    "video_path": "assets/videos/reels/13.mp4",
+    "thumbnail_path": "assets/images/series1_thumb.jpg",
+    "type": "short",
+    "duration": "0:25",
+    "uploader": "فن الرسم",
+    "views": "120K",
+    "upload_date": "منذ 8 ساعات"
+  },
+  {
+    "id": "mot_v",
+    "title": "كلمات ستغير نظرتك للحياة ✨",
+    "video_path": "assets/videos/reels/14.mp4",
+    "thumbnail_path": "assets/images/series1_thumb.jpg",
+    "type": "short",
+    "duration": "0:55",
+    "uploader": "طاقة إيجابية",
+    "views": "600K",
+    "upload_date": "الآن"
   }
 ]

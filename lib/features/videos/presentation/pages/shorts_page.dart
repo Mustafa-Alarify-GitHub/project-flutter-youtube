@@ -35,17 +35,18 @@ class ShortVideoItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        Positioned.fill(
-          child: YouTubeVideoPlayer(videoId: video.id, videoPath: video.videoPath, isShort: true),
-        ),
-        Positioned(
-          bottom: 0,
-          left: 0,
-          right: 0,
+    return YouTubeVideoPlayer(
+      videoId: video.id,
+      videoPath: video.videoPath,
+      isShort: true,
+      overlay: Positioned(
+        bottom: 0,
+        left: 0,
+        right: 0,
+        child: IgnorePointer(
+          ignoring: false,
           child: Container(
-            padding: const EdgeInsets.all(16),
+            padding: const EdgeInsets.only(left: 16, right: 16, top: 16, bottom: 30), // Extra bottom padding for the slider
             decoration: BoxDecoration(
               gradient: LinearGradient(
                 begin: Alignment.bottomCenter,
@@ -102,7 +103,7 @@ class ShortVideoItem extends StatelessWidget {
             ),
           ),
         ),
-      ],
+      ),
     );
   }
 

@@ -20,7 +20,6 @@ class YouTubeVideoPlayer extends ConsumerStatefulWidget {
     this.overlay,
   }) : super(key: key);
 
-
   @override
   ConsumerState<YouTubeVideoPlayer> createState() => _YouTubeVideoPlayerState();
 }
@@ -32,7 +31,6 @@ class _YouTubeVideoPlayerState extends ConsumerState<YouTubeVideoPlayer> {
   @override
   void initState() {
     super.initState();
-    // Record watch history
     WidgetsBinding.instance.addPostFrameCallback((_) {
       ref.read(historyProvider.notifier).recordWatch(widget.videoId);
     });
@@ -48,14 +46,12 @@ class _YouTubeVideoPlayerState extends ConsumerState<YouTubeVideoPlayer> {
 
     await _videoPlayerController.initialize();
 
-    // Restore saved position
     final prefs = await SharedPreferences.getInstance();
     final savedPos = prefs.getInt('pos_${widget.videoId}');
     if (savedPos != null) {
       await _videoPlayerController.seekTo(Duration(milliseconds: savedPos));
     }
 
-    // Add listener to periodically save state
     _videoPlayerController.addListener(() {
       if (_videoPlayerController.value.isPlaying) {
         prefs.setInt('pos_${widget.videoId}', _videoPlayerController.value.position.inMilliseconds);
@@ -68,6 +64,8 @@ class _YouTubeVideoPlayerState extends ConsumerState<YouTubeVideoPlayer> {
       looping: widget.isShort,
       aspectRatio: widget.isShort ? 9 / 16 : _videoPlayerController.value.aspectRatio,
       showControls: !widget.isShort,
+      // This overlay works in both Normal and Full Screen modes
+      overlay: widget.isShort ? null : _VideoGestureLayer(controller: _videoPlayerController),
       materialProgressColors: ChewieProgressColors(
         playedColor: Colors.red,
         handleColor: Colors.red,
@@ -81,116 +79,113 @@ class _YouTubeVideoPlayerState extends ConsumerState<YouTubeVideoPlayer> {
 
   @override
   void dispose() {
-    // Save state on exact dispose
     SharedPreferences.getInstance().then((prefs) {
-      prefs.setInt('pos_${widget.videoId}', _videoPlayerController.value.position.inMilliseconds);
+      if (_videoPlayerController.value.isInitialized) {
+        prefs.setInt('pos_${widget.videoId}', _videoPlayerController.value.position.inMilliseconds);
+      }
     });
-
     _videoPlayerController.dispose();
     _chewieController?.dispose();
     super.dispose();
   }
 
+  @override
+  Widget build(BuildContext context) {
+    if (_chewieController == null || !_videoPlayerController.value.isInitialized) {
+      return const Center(child: CircularProgressIndicator(color: Colors.red));
+    }
+
+    return Stack(
+      children: [
+        Chewie(controller: _chewieController!),
+        if (widget.overlay != null) widget.overlay!,
+        
+        if (widget.isShort)
+          Positioned(
+            bottom: 0, left: 0, right: 0,
+            child: SizedBox(
+              height: 20,
+              child: ValueListenableBuilder(
+                valueListenable: _videoPlayerController,
+                builder: (context, value, child) {
+                  final max = value.duration.inMilliseconds.toDouble();
+                  final pos = value.position.inMilliseconds.toDouble();
+                  final safeMax = max <= 0 ? 1.0 : max;
+                  return SliderTheme(
+                    data: SliderTheme.of(context).copyWith(
+                      trackHeight: 2.0,
+                      thumbShape: const RoundSliderThumbShape(enabledThumbRadius: 6.0),
+                      overlayShape: const RoundSliderOverlayShape(overlayRadius: 14.0),
+                      activeTrackColor: Colors.red,
+                      inactiveTrackColor: Colors.white24,
+                      thumbColor: Colors.red,
+                    ),
+                    child: Slider(
+                      value: pos.clamp(0.0, safeMax),
+                      min: 0.0,
+                      max: safeMax,
+                      onChanged: (v) => _videoPlayerController.seekTo(Duration(milliseconds: v.toInt())),
+                    ),
+                  );
+                },
+              ),
+            ),
+          ),
+      ],
+    );
+  }
+}
+
+class _VideoGestureLayer extends StatefulWidget {
+  final VideoPlayerController controller;
+  const _VideoGestureLayer({required this.controller});
+
+  @override
+  State<_VideoGestureLayer> createState() => _VideoGestureLayerState();
+}
+
+class _VideoGestureLayerState extends State<_VideoGestureLayer> {
+  Offset? _tapDownPos;
 
   void _seekRelative(Duration delta) {
-    if (_videoPlayerController.value.isInitialized) {
-      final currentPosition = _videoPlayerController.value.position;
-      final newPosition = currentPosition + delta;
-      
-      if (newPosition < Duration.zero) {
-        _videoPlayerController.seekTo(Duration.zero);
-      } else if (newPosition > _videoPlayerController.value.duration) {
-        _videoPlayerController.seekTo(_videoPlayerController.value.duration);
-      } else {
-        _videoPlayerController.seekTo(newPosition);
-      }
-    }
-  }
-
-  void _seekDrag(double dx) {
-    _seekRelative(Duration(milliseconds: (dx * 200).toInt()));
+    var newPos = widget.controller.value.position + delta;
+    if (newPos < Duration.zero) newPos = Duration.zero;
+    if (newPos > widget.controller.value.duration) newPos = widget.controller.value.duration;
+    widget.controller.seekTo(newPos);
   }
 
   @override
   Widget build(BuildContext context) {
-    if (_chewieController != null && _chewieController!.videoPlayerController.value.isInitialized) {
-      return Stack(
-        children: [
-          Chewie(controller: _chewieController!),
-          
-          if (widget.overlay != null) widget.overlay!,
-
-          if (!widget.isShort) // Shorts already have swipe logic
-            Positioned(
-              top: 0,
-              bottom: 60, // leave space for bottom controls
-              left: 0,
-              right: 0,
-              child: Row(
-                children: [
-                  Expanded(
-                    child: GestureDetector(
-                      behavior: HitTestBehavior.translucent,
-                      onDoubleTap: () => _seekRelative(const Duration(seconds: -10)),
-                      onHorizontalDragUpdate: (details) => _seekDrag(details.delta.dx),
-                    ),
-                  ),
-                  Expanded(
-                    child: GestureDetector(
-                      behavior: HitTestBehavior.translucent,
-                      onDoubleTap: () => _seekRelative(const Duration(seconds: 10)),
-                      onHorizontalDragUpdate: (details) => _seekDrag(details.delta.dx),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          
-          if (widget.isShort && _videoPlayerController.value.isInitialized)
-            Positioned(
-              bottom: 0,
-              left: 0,
-              right: 0,
-              child: SizedBox(
-                height: 20, // Keep slider area small so it doesn't take up too much vertical space
-                child: ValueListenableBuilder(
-                  valueListenable: _videoPlayerController,
-                  builder: (context, VideoPlayerValue value, child) {
-                    final maxDuration = value.duration.inMilliseconds.toDouble();
-                    final currentPos = value.position.inMilliseconds.toDouble();
-                    // Prevent crash if duration is 0
-                    final safeMax = maxDuration <= 0 ? 1.0 : maxDuration;
-                    final safeValue = currentPos.clamp(0.0, safeMax);
-
-                    return SliderTheme(
-                      data: SliderTheme.of(context).copyWith(
-                        trackHeight: 2.0,
-                        thumbShape: const RoundSliderThumbShape(enabledThumbRadius: 6.0),
-                        overlayShape: const RoundSliderOverlayShape(overlayRadius: 14.0),
-                        activeTrackColor: Colors.red,
-                        inactiveTrackColor: Colors.white24,
-                        thumbColor: Colors.red,
-                      ),
-                      child: Slider(
-                        value: safeValue,
-                        min: 0.0,
-                        max: safeMax,
-                        onChanged: (newValue) {
-                          _videoPlayerController.seekTo(Duration(milliseconds: newValue.toInt()));
-                        },
-                      ),
-                    );
+    return Positioned.fill(
+      child: LayoutBuilder(
+        builder: (context, constraints) {
+          return Stack(
+            children: [
+              Positioned(
+                top: 0, left: 0, right: 0, bottom: 80, // Top area for gestures
+                child: GestureDetector(
+                  behavior: HitTestBehavior.translucent,
+                  onDoubleTapDown: (d) => _tapDownPos = d.localPosition,
+                  onDoubleTap: () {
+                    if (_tapDownPos == null) return;
+                    if (_tapDownPos!.dx < constraints.maxWidth / 2) {
+                      _seekRelative(const Duration(seconds: -10));
+                    } else {
+                      _seekRelative(const Duration(seconds: 10));
+                    }
                   },
+                  onHorizontalDragUpdate: (details) {
+                     // Scrubbing: move seek based on drag distance
+                     final deltaMs = (details.delta.dx * 150).toInt();
+                     _seekRelative(Duration(milliseconds: deltaMs));
+                  },
+                  child: Container(color: Colors.transparent),
                 ),
               ),
-            ),
-        ],
-      );
-
-    } else {
-      return const Center(
-        child: CircularProgressIndicator(color: Colors.red),
-      );
-    }
+            ],
+          );
+        }
+      ),
+    );
   }
 }
