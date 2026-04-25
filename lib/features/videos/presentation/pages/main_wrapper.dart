@@ -26,7 +26,7 @@ class MainWrapper extends ConsumerWidget {
         currentIndex: index,
         onTap: (val) => ref.read(navigationIndexProvider.notifier).state = val,
         type: BottomNavigationBarType.fixed,
-        selectedItemColor: Colors.black,
+        selectedItemColor: Theme.of(context).colorScheme.primary, // Adapts to theme
         unselectedItemColor: Colors.grey,
         items: const [
           BottomNavigationBarItem(icon: Icon(Icons.home_outlined), activeIcon: Icon(Icons.home), label: 'Home'),

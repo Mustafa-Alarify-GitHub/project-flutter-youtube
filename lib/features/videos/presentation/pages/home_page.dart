@@ -115,7 +115,10 @@ class HomePage extends ConsumerWidget {
               )
             : Row(
                 children: [
-                   const Icon(Icons.local_florist, color: Colors.red),
+                  Image.asset(
+                    'assets/icon.png',
+                    height: 32,
+                  ),
                   const SizedBox(width: 8),
                   const Text(
                     'يوتيوب جوري',
