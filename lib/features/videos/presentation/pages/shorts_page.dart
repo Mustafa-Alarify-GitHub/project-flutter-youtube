@@ -14,13 +14,17 @@ class ShortsPage extends ConsumerWidget {
     return Scaffold(
       backgroundColor: Colors.black,
       body: shortsAsync.when(
-        data: (videos) => PageView.builder(
-          scrollDirection: Axis.vertical,
-          itemCount: videos.length,
-          itemBuilder: (context, index) {
-            return ShortVideoItem(video: videos[index]);
-          },
-        ),
+        data: (videos) {
+          if (videos.isEmpty) return const Center(child: Text('No shorts available', style: TextStyle(color: Colors.white)));
+          return PageView.builder(
+            scrollDirection: Axis.vertical,
+            // Infinite scrolling logic
+            itemBuilder: (context, index) {
+              final videoIndex = index % videos.length;
+              return ShortVideoItem(video: videos[videoIndex]);
+            },
+          );
+        },
         loading: () => const Center(child: CircularProgressIndicator(color: Colors.white)),
         error: (e, s) => Center(child: Text('Error: $e', style: const TextStyle(color: Colors.white))),
       ),

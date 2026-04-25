@@ -8,7 +8,9 @@ class VideoLocalDataSource {
     try {
       final String response = await rootBundle.loadString('assets/shorts.json');
       final List<dynamic> data = json.decode(response);
-      return data.map((json) => VideoModel.fromJson(json)).toList();
+      final videos = data.map((json) => VideoModel.fromJson(json)).toList();
+      videos.shuffle();
+      return videos;
     } catch (e) {
       print('Error loading shorts: $e');
       return [];

@@ -45,6 +45,9 @@ class _YouTubeVideoPlayerState extends ConsumerState<YouTubeVideoPlayer> {
     }
 
     await _videoPlayerController.initialize();
+    if (widget.isShort) {
+      await _videoPlayerController.setLooping(true);
+    }
 
     final prefs = await SharedPreferences.getInstance();
     final savedPos = prefs.getInt('pos_${widget.videoId}');
