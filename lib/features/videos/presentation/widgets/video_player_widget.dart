@@ -5,6 +5,7 @@ import 'package:video_player/video_player.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ww/features/videos/presentation/providers/video_provider.dart';
+import 'package:ww/features/videos/presentation/providers/parental_provider.dart';
 
 class YouTubeVideoPlayer extends ConsumerStatefulWidget {
   final String videoId;
@@ -77,6 +78,11 @@ class _YouTubeVideoPlayerState extends ConsumerState<YouTubeVideoPlayer> {
       ),
       autoInitialize: true,
     );
+
+    // Apply parental volume limit
+    final parentalState = ref.read(parentalProvider);
+    _videoPlayerController.setVolume(parentalState.maxVolume);
+
     setState(() {});
   }
 
@@ -94,6 +100,13 @@ class _YouTubeVideoPlayerState extends ConsumerState<YouTubeVideoPlayer> {
 
   @override
   Widget build(BuildContext context) {
+    // Listen for volume limit changes
+    ref.listen(parentalProvider.select((s) => s.maxVolume), (prev, next) {
+      if (_videoPlayerController.value.isInitialized) {
+        _videoPlayerController.setVolume(next);
+      }
+    });
+
     if (_chewieController == null || !_videoPlayerController.value.isInitialized) {
       return const Center(child: CircularProgressIndicator(color: Colors.red));
     }

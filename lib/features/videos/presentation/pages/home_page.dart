@@ -6,6 +6,8 @@ import 'package:ww/features/videos/domain/models/video_model.dart';
 import 'package:ww/features/videos/domain/models/series_model.dart';
 import 'package:ww/features/videos/presentation/pages/shorts_page.dart';
 import 'package:ww/features/videos/presentation/widgets/video_thumbnail_widget.dart';
+import 'package:ww/features/videos/presentation/widgets/math_gate_dialog.dart';
+import 'package:ww/features/videos/presentation/pages/parental_settings_page.dart';
 import 'series_detail_page.dart';
 
 class SeriesCard extends StatelessWidget {
@@ -142,8 +144,16 @@ class HomePage extends ConsumerWidget {
           ),
           IconButton(icon: const Icon(Icons.cast), onPressed: () {}),
           IconButton(
-            icon: const Icon(Icons.notifications_none),
-            onPressed: () {},
+            icon: const Icon(Icons.lock_outline),
+            onPressed: () async {
+              final success = await MathGateDialog.show(context);
+              if (success) {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const ParentalSettingsPage()),
+                );
+              }
+            },
           ),
           const CircleAvatar(
             radius: 14,
