@@ -1,0 +1,46 @@
+[
+  {
+    "id": "1",
+    "title": "Welcome to the Jungle - 4K High Quality",
+    "video_path": "/storage/emulated/0/Movies/nature_video.mp4",
+    "thumbnail_path": "assets/images/nature_thumb.jpg",
+    "type": "long",
+    "duration": "10:15",
+    "uploader": "Wild Explorer",
+    "views": "1.2M views",
+    "upload_date": "2 days ago"
+  },
+  {
+    "id": "2",
+    "title": "Amazing Flutter Animation Experiment",
+    "video_path": "/storage/emulated/0/Movies/flutter_short.mp4",
+    "thumbnail_path": "assets/images/flutter_thumb.jpg",
+    "type": "short",
+    "duration": "0:45",
+    "uploader": "Flutter Guy",
+    "views": "50K views",
+    "upload_date": "1 hour ago"
+  },
+  {
+    "id": "3",
+    "title": "Cooking the best Steak at Home",
+    "video_path": "/storage/emulated/0/Movies/cooking.mp4",
+    "thumbnail_path": "assets/images/cooking_thumb.jpg",
+    "type": "long",
+    "duration": "15:30",
+    "uploader": "Chef Omar",
+    "views": "250K views",
+    "upload_date": "1 week ago"
+  },
+  {
+    "id": "4",
+    "title": "Funny Cat Fails 2024",
+    "video_path": "/storage/emulated/0/Movies/cats.mp4",
+    "thumbnail_path": "assets/images/cats_thumb.jpg",
+    "type": "short",
+    "duration": "0:59",
+    "uploader": "Pet Lovers",
+    "views": "1M views",
+    "upload_date": "Yesterday"
+  }
+]

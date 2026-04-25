@@ -1,0 +1,46 @@
+[
+  {
+    "id": "s1",
+    "title": "Season 1: Adventure Quest",
+    "thumbnail_path": "assets/images/series1_thumb.jpg",
+    "episodes": [
+      {
+        "id": "v1_1",
+        "title": "Episode 1: The Beginning",
+        "video_path": "/storage/emulated/0/Movies/Adventure/ep1.mp4",
+        "thumbnail_path": "assets/images/ep1_thumb.jpg",
+        "duration": "22:15",
+        "uploader": "Adventure channel",
+        "views": "1.2M",
+        "upload_date": "2 days ago"
+      },
+      {
+        "id": "v1_2",
+        "title": "Episode 2: Into the Woods",
+        "video_path": "/storage/emulated/0/Movies/Adventure/ep2.mp4",
+        "thumbnail_path": "assets/images/ep2_thumb.jpg",
+        "duration": "24:00",
+        "uploader": "Adventure channel",
+        "views": "900K",
+        "upload_date": "Yesterday"
+      }
+    ]
+  },
+  {
+    "id": "s2",
+    "title": "Cooking Masterclass",
+    "thumbnail_path": "assets/images/series2_thumb.jpg",
+    "episodes": [
+      {
+        "id": "v2_1",
+        "title": "Lesson 1: Knife Skills",
+        "video_path": "/storage/emulated/0/Movies/Cooking/lesson1.mp4",
+        "thumbnail_path": "assets/images/lesson1_thumb.jpg",
+        "duration": "15:30",
+        "uploader": "Chef JOORI",
+        "views": "500K",
+        "upload_date": "1 week ago"
+      }
+    ]
+  }
+]

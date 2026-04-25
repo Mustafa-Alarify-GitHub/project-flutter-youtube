@@ -1,0 +1,24 @@
+[
+  {
+    "id": "short1",
+    "title": "Funny Moment #1",
+    "video_path": "/storage/emulated/0/Movies/Shorts/funny1.mp4",
+    "thumbnail_path": "assets/images/short1_thumb.jpg",
+    "type": "short",
+    "duration": "0:15",
+    "uploader": "Shorts King",
+    "views": "2M",
+    "upload_date": "1 hour ago"
+  },
+  {
+    "id": "short2",
+    "title": "Amazing Skill!",
+    "video_path": "/storage/emulated/0/Movies/Shorts/skill1.mp4",
+    "thumbnail_path": "assets/images/short2_thumb.jpg",
+    "type": "short",
+    "duration": "0:59",
+    "uploader": "Expert",
+    "views": "500K",
+    "upload_date": "Yesterday"
+  }
+]
