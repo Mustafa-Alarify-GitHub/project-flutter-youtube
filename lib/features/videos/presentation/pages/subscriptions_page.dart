@@ -9,8 +9,7 @@ class SubscriptionsPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final seriesAsync = ref.watch(filteredSeriesProvider);
-    final isSearchVisible = ref.watch(isSearchVisibleProvider);
-
+ 
     return Scaffold(
       appBar: AppBar(
         title: const Text('Subscriptions', style: TextStyle(fontWeight: FontWeight.bold)),

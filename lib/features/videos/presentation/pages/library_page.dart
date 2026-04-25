@@ -4,6 +4,7 @@ import 'package:ww/features/videos/presentation/providers/video_provider.dart';
 import 'package:ww/features/videos/presentation/pages/home_page.dart';
 import 'package:ww/features/videos/presentation/pages/shorts_page.dart';
 import 'package:ww/features/videos/presentation/pages/video_detail_page.dart';
+import 'package:ww/features/videos/presentation/widgets/video_thumbnail_widget.dart';
 
 class LibraryPage extends ConsumerWidget {
   const LibraryPage({Key? key}) : super(key: key);
@@ -61,12 +62,13 @@ class LibraryPage extends ConsumerWidget {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Container(
-                                height: 90,
-                                decoration: BoxDecoration(
+                              ClipRRect(
+                                borderRadius: BorderRadius.circular(8),
+                                child: Container(
+                                  height: 90,
+                                  width: 160,
                                   color: Colors.grey[300],
-                                  borderRadius: BorderRadius.circular(8),
-                                  image: DecorationImage(image: AssetImage(v.thumbnailPath), fit: BoxFit.cover),
+                                  child: VideoThumbnailWidget(videoPath: v.videoPath),
                                 ),
                               ),
                               const SizedBox(height: 8),

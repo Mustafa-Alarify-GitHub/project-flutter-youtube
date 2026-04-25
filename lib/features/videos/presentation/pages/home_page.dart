@@ -1,10 +1,10 @@
-import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ww/features/videos/presentation/pages/video_detail_page.dart';
 import 'package:ww/features/videos/presentation/providers/video_provider.dart';
 import 'package:ww/features/videos/domain/models/video_model.dart';
 import 'package:ww/features/videos/domain/models/series_model.dart';
+import 'package:ww/features/videos/presentation/widgets/video_thumbnail_widget.dart';
 import 'series_detail_page.dart';
 
 class SeriesCard extends StatelessWidget {
@@ -31,14 +31,12 @@ class SeriesCard extends StatelessWidget {
               Container(
                 height: 220,
                 width: double.infinity,
-                decoration: BoxDecoration(
-                  color: Colors.grey[300],
-                ),
-                child: series.thumbnailPath.startsWith('assets/')
-                    ? Image.asset(series.thumbnailPath, fit: BoxFit.cover)
-                    : (File(series.thumbnailPath).existsSync()
-                        ? Image.file(File(series.thumbnailPath), fit: BoxFit.cover)
-                        : const Icon(Icons.video_collection, size: 50)),
+                decoration: BoxDecoration(color: Colors.grey[300]),
+                child: (series.episodes.isNotEmpty)
+                    ? VideoThumbnailWidget(
+                        videoPath: series.episodes.first.videoPath,
+                      )
+                    : const Icon(Icons.video_collection, size: 50),
               ),
               Container(
                 margin: const EdgeInsets.all(8),
@@ -72,7 +70,10 @@ class SeriesCard extends StatelessWidget {
                         series.title,
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
-                        style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                        style: const TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 16,
+                        ),
                       ),
                       Text(
                         'Series • ${series.episodes.length} items',
@@ -111,18 +112,19 @@ class HomePage extends ConsumerWidget {
                   hintText: 'Search videos...',
                   border: InputBorder.none,
                 ),
-                onChanged: (val) => ref.read(searchQueryProvider.notifier).state = val,
+                onChanged: (val) =>
+                    ref.read(searchQueryProvider.notifier).state = val,
               )
             : Row(
                 children: [
-                  Image.asset(
-                    'assets/icon.png',
-                    height: 32,
-                  ),
+                  Image.asset('assets/icon.png', height: 32),
                   const SizedBox(width: 8),
                   const Text(
                     'يوتيوب جوري',
-                    style: TextStyle(fontWeight: FontWeight.bold, letterSpacing: -1),
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      letterSpacing: -1,
+                    ),
                   ),
                 ],
               ),
@@ -130,12 +132,18 @@ class HomePage extends ConsumerWidget {
           IconButton(
             icon: Icon(isSearchVisible ? Icons.close : Icons.search),
             onPressed: () {
-              ref.read(isSearchVisibleProvider.notifier).state = !isSearchVisible;
-              if (isSearchVisible) ref.read(searchQueryProvider.notifier).state = '';
+              ref.read(isSearchVisibleProvider.notifier).state =
+                  !isSearchVisible;
+              if (isSearchVisible) {
+                ref.read(searchQueryProvider.notifier).state = '';
+              }
             },
           ),
           IconButton(icon: const Icon(Icons.cast), onPressed: () {}),
-          IconButton(icon: const Icon(Icons.notifications_none), onPressed: () {}),
+          IconButton(
+            icon: const Icon(Icons.notifications_none),
+            onPressed: () {},
+          ),
           const CircleAvatar(
             radius: 14,
             backgroundColor: Colors.blueGrey,
@@ -147,7 +155,9 @@ class HomePage extends ConsumerWidget {
       body: videosAsync.when(
         data: (videos) {
           final query = searchQuery.toLowerCase();
-          final filtered = videos.where((v) => v.title.toLowerCase().contains(query)).toList();
+          final filtered = videos
+              .where((v) => v.title.toLowerCase().contains(query))
+              .toList();
           return ListView.builder(
             itemCount: filtered.length,
             itemBuilder: (context, index) {
@@ -155,13 +165,13 @@ class HomePage extends ConsumerWidget {
             },
           );
         },
-        loading: () => const Center(child: CircularProgressIndicator(color: Colors.red)),
+        loading: () =>
+            const Center(child: CircularProgressIndicator(color: Colors.red)),
         error: (e, s) => Center(child: Text('Error loading videos: $e')),
       ),
     );
   }
 }
-
 
 class VideoCard extends StatelessWidget {
   final VideoModel video;
@@ -187,14 +197,8 @@ class VideoCard extends StatelessWidget {
               Container(
                 height: 220,
                 width: double.infinity,
-                decoration: BoxDecoration(
-                  color: Colors.grey[300],
-                ),
-                child: video.thumbnailPath.startsWith('assets/')
-                    ? Image.asset(video.thumbnailPath, fit: BoxFit.cover)
-                    : (File(video.thumbnailPath).existsSync()
-                        ? Image.file(File(video.thumbnailPath), fit: BoxFit.cover)
-                        : const Icon(Icons.video_collection, size: 50)),
+                decoration: BoxDecoration(color: Colors.grey[300]),
+                child: VideoThumbnailWidget(videoPath: video.videoPath),
               ),
               Container(
                 margin: const EdgeInsets.all(8),
@@ -228,7 +232,10 @@ class VideoCard extends StatelessWidget {
                         video.title,
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
-                        style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                        style: const TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 16,
+                        ),
                       ),
                       Text(
                         '${video.uploader} • ${video.views} • ${video.uploadDate}',
@@ -239,14 +246,18 @@ class VideoCard extends StatelessWidget {
                 ),
                 Consumer(
                   builder: (context, ref, child) {
-                    final isFav = ref.watch(favoritesProvider).contains(video.id);
+                    final isFav = ref
+                        .watch(favoritesProvider)
+                        .contains(video.id);
                     return IconButton(
                       icon: Icon(
                         isFav ? Icons.favorite : Icons.favorite_border,
                         color: isFav ? Colors.red : null,
                         size: 20,
                       ),
-                      onPressed: () => ref.read(favoritesProvider.notifier).toggleFavorite(video.id),
+                      onPressed: () => ref
+                          .read(favoritesProvider.notifier)
+                          .toggleFavorite(video.id),
                     );
                   },
                 ),
