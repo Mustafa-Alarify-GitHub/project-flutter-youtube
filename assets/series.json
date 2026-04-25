@@ -59,13 +59,53 @@
   {
     "id": "s2",
     "title": "Cooking Masterclass",
-    "thumbnail_path": "assets/images/series1_thumb.jpg",
+    "thumbnail_path": "assets/images/download.jpg",
     "episodes": [
       {
         "id": "v2_1",
         "title": "Lesson 1: Knife Skills",
-        "video_path": "assets/videos/series/lesson1.mp4",
-        "thumbnail_path": "assets/images/series1_thumb.jpg",
+        "video_path": "assets/videos/series/TheBeginningAftertheEnd/1.mp4",
+        "thumbnail_path": "assets/images/download.jpg",
+        "duration": "15:30",
+        "uploader": "Chef JOORI",
+        "views": "500K",
+        "upload_date": "1 week ago"
+      },
+      {
+        "id": "v2_2",
+        "title": "Lesson 1: Knife Skills",
+        "video_path": "assets/videos/series/TheBeginningAftertheEnd/2.mp4",
+        "thumbnail_path": "assets/images/download.jpg",
+        "duration": "15:30",
+        "uploader": "Chef JOORI",
+        "views": "500K",
+        "upload_date": "1 week ago"
+      },
+      {
+        "id": "v2_3",
+        "title": "Lesson 1: Knife Skills",
+        "video_path": "assets/videos/series/TheBeginningAftertheEnd/3.mp4",
+        "thumbnail_path": "assets/images/download.jpg",
+        "duration": "15:30",
+        "uploader": "Chef JOORI",
+        "views": "500K",
+        "upload_date": "1 week ago"
+      },
+      {
+        "id": "v2_4",
+        "title": "Lesson 1: Knife Skills",
+        "video_path": "assets/videos/series/TheBeginningAftertheEnd/4.mp4",
+        "thumbnail_path": "assets/images/download.jpg",
+        "duration": "15:30",
+        "uploader": "Chef JOORI",
+        "views": "500K",
+        "upload_date": "1 week ago"
+      },
+      {
+        "id": "v2_5",
+        "title": "Lesson 1: Knife Skills",
+        "video_path": "assets/videos/series/TheBeginningAftertheEnd/5.mp4",
+        "thumbnail_path": "assets/images/download.jpg",
         "duration": "15:30",
         "uploader": "Chef JOORI",
         "views": "500K",

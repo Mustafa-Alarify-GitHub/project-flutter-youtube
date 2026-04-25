@@ -34,6 +34,7 @@ flutter:
     - assets/icon.png
     - assets/videos/series/
     - assets/videos/series/spy/
+    - assets/videos/series/TheBeginningAftertheEnd/
     - assets/videos/reels/
 
 flutter_launcher_icons:

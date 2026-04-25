@@ -25,8 +25,8 @@ final shortVideosProvider = FutureProvider<List<VideoModel>>((ref) async {
   return dataSource.loadShorts();
 });
 
-// Random videos provider (for Home Feed)
-final randomVideosProvider = Provider<AsyncValue<List<VideoModel>>>((ref) {
+// Latest videos provider (for Home Feed)
+final latestVideosProvider = Provider<AsyncValue<List<VideoModel>>>((ref) {
   final seriesAsync = ref.watch(seriesProvider);
   final shortVideosAsync = ref.watch(shortVideosProvider);
 
@@ -35,8 +35,8 @@ final randomVideosProvider = Provider<AsyncValue<List<VideoModel>>>((ref) {
     if (shortVideosAsync.hasValue) {
       allVideos.addAll(shortVideosAsync.value!);
     }
-    allVideos.shuffle();
-    return allVideos;
+    // Reverse so the newest additions (bottom of JSON) appear at the top
+    return allVideos.reversed.toList();
   });
 });
 

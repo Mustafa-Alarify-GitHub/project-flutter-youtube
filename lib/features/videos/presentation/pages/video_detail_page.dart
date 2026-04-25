@@ -28,7 +28,8 @@ class VideoDetailPage extends ConsumerWidget {
 
       if (currentSeries != null) {
         var related = currentSeries.episodes.where((v) => v.id != video.id).toList();
-        suggestedVideos.addAll(related.take(3));
+        // Add ALL other related videos in this series
+        suggestedVideos.addAll(related);
       }
 
       var allOtherVideos = seriesList
@@ -36,8 +37,9 @@ class VideoDetailPage extends ConsumerWidget {
           .where((v) => v.id != video.id && !suggestedVideos.any((sv) => sv.id == v.id))
           .toList();
       
-      allOtherVideos.shuffle();
-      suggestedVideos.addAll(allOtherVideos.take(7)); 
+      // Add the rest from what was recently added (reversing to simulate latest)
+      allOtherVideos = allOtherVideos.reversed.toList();
+      suggestedVideos.addAll(allOtherVideos.take(15 - suggestedVideos.length)); 
     });
 
     return Scaffold(

@@ -10,13 +10,16 @@ class YouTubeVideoPlayer extends ConsumerStatefulWidget {
   final String videoId;
   final String videoPath;
   final bool isShort;
+  final Widget? overlay;
 
   const YouTubeVideoPlayer({
     Key? key,
     required this.videoId,
     required this.videoPath,
     this.isShort = false,
+    this.overlay,
   }) : super(key: key);
+
 
   @override
   ConsumerState<YouTubeVideoPlayer> createState() => _YouTubeVideoPlayerState();
@@ -115,6 +118,8 @@ class _YouTubeVideoPlayerState extends ConsumerState<YouTubeVideoPlayer> {
         children: [
           Chewie(controller: _chewieController!),
           
+          if (widget.overlay != null) widget.overlay!,
+
           if (!widget.isShort) // Shorts already have swipe logic
             Positioned(
               top: 0,
@@ -146,14 +151,36 @@ class _YouTubeVideoPlayerState extends ConsumerState<YouTubeVideoPlayer> {
               bottom: 0,
               left: 0,
               right: 0,
-              child: VideoProgressIndicator(
-                _videoPlayerController,
-                allowScrubbing: true,
-                padding: EdgeInsets.zero,
-                colors: const VideoProgressColors(
-                  playedColor: Colors.red,
-                  backgroundColor: Colors.white24,
-                  bufferedColor: Colors.white60,
+              child: SizedBox(
+                height: 20, // Keep slider area small so it doesn't take up too much vertical space
+                child: ValueListenableBuilder(
+                  valueListenable: _videoPlayerController,
+                  builder: (context, VideoPlayerValue value, child) {
+                    final maxDuration = value.duration.inMilliseconds.toDouble();
+                    final currentPos = value.position.inMilliseconds.toDouble();
+                    // Prevent crash if duration is 0
+                    final safeMax = maxDuration <= 0 ? 1.0 : maxDuration;
+                    final safeValue = currentPos.clamp(0.0, safeMax);
+
+                    return SliderTheme(
+                      data: SliderTheme.of(context).copyWith(
+                        trackHeight: 2.0,
+                        thumbShape: const RoundSliderThumbShape(enabledThumbRadius: 6.0),
+                        overlayShape: const RoundSliderOverlayShape(overlayRadius: 14.0),
+                        activeTrackColor: Colors.red,
+                        inactiveTrackColor: Colors.white24,
+                        thumbColor: Colors.red,
+                      ),
+                      child: Slider(
+                        value: safeValue,
+                        min: 0.0,
+                        max: safeMax,
+                        onChanged: (newValue) {
+                          _videoPlayerController.seekTo(Duration(milliseconds: newValue.toInt()));
+                        },
+                      ),
+                    );
+                  },
                 ),
               ),
             ),

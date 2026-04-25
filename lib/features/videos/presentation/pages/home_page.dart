@@ -98,7 +98,7 @@ class HomePage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final videosAsync = ref.watch(randomVideosProvider);
+    final videosAsync = ref.watch(latestVideosProvider);
     final isSearchVisible = ref.watch(isSearchVisibleProvider);
     final searchQuery = ref.watch(searchQueryProvider);
 
