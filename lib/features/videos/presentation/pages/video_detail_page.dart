@@ -3,6 +3,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ww/features/videos/presentation/providers/video_provider.dart';
 import 'package:ww/features/videos/domain/models/video_model.dart';
 import 'package:ww/features/videos/presentation/widgets/video_player_widget.dart';
+import 'package:ww/features/videos/presentation/pages/home_page.dart';
+import 'package:ww/features/videos/domain/models/series_model.dart';
 
 class VideoDetailPage extends ConsumerWidget {
   final VideoModel video;
@@ -12,6 +14,31 @@ class VideoDetailPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final isFav = ref.watch(favoritesProvider).contains(video.id);
+    final seriesAsync = ref.watch(seriesProvider);
+
+    List<VideoModel> suggestedVideos = [];
+    seriesAsync.whenData((seriesList) {
+      SeriesModel? currentSeries;
+      for (var s in seriesList) {
+        if (s.episodes.any((v) => v.id == video.id)) {
+          currentSeries = s;
+          break;
+        }
+      }
+
+      if (currentSeries != null) {
+        var related = currentSeries.episodes.where((v) => v.id != video.id).toList();
+        suggestedVideos.addAll(related.take(3));
+      }
+
+      var allOtherVideos = seriesList
+          .expand((s) => s.episodes)
+          .where((v) => v.id != video.id && !suggestedVideos.any((sv) => sv.id == v.id))
+          .toList();
+      
+      allOtherVideos.shuffle();
+      suggestedVideos.addAll(allOtherVideos.take(7)); 
+    });
 
     return Scaffold(
       body: SafeArea(
@@ -19,7 +46,7 @@ class VideoDetailPage extends ConsumerWidget {
           children: [
             AspectRatio(
               aspectRatio: 16 / 9,
-              child: YouTubeVideoPlayer(videoPath: video.videoPath),
+              child: YouTubeVideoPlayer(videoId: video.id, videoPath: video.videoPath),
             ),
             Expanded(
               child: ListView(
@@ -71,10 +98,17 @@ class VideoDetailPage extends ConsumerWidget {
                     ],
                   ),
                   const Divider(),
-                  // Mock suggested videos
                   const Text('Up Next', style: TextStyle(fontWeight: FontWeight.bold)),
                   const SizedBox(height: 12),
-                  const Center(child: Text('No more local videos found.')),
+                  if (seriesAsync.isLoading)
+                    const Center(child: CircularProgressIndicator())
+                  else if (suggestedVideos.isEmpty)
+                    const Center(child: Text('No more local videos found.'))
+                  else
+                    ...suggestedVideos.map((v) => Padding(
+                          padding: const EdgeInsets.only(bottom: 12),
+                          child: VideoCard(video: v),
+                        )),
                 ],
               ),
             ),
@@ -83,6 +117,7 @@ class VideoDetailPage extends ConsumerWidget {
       ),
     );
   }
+
 
   Widget _buildAction(IconData icon, String label, {Color? color, VoidCallback? onTap}) {
     return InkWell(

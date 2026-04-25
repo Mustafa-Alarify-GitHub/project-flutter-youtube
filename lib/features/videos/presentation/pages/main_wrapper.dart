@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ww/features/videos/presentation/pages/home_page.dart';
 import 'package:ww/features/videos/presentation/pages/shorts_page.dart';
 import 'package:ww/features/videos/presentation/pages/library_page.dart';
+import 'package:ww/features/videos/presentation/pages/subscriptions_page.dart';
 
 final navigationIndexProvider = StateProvider<int>((ref) => 0);
 
@@ -16,9 +17,10 @@ class MainWrapper extends ConsumerWidget {
     final List<Widget> pages = [
       const HomePage(),
       const ShortsPage(),
-      const Center(child: Text('Subscriptions (Coming soon)')),
+      const SubscriptionsPage(),
       const LibraryPage(),
     ];
+
 
     return Scaffold(
       body: pages[index],

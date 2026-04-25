@@ -38,7 +38,7 @@ class ShortVideoItem extends StatelessWidget {
     return Stack(
       children: [
         Positioned.fill(
-          child: YouTubeVideoPlayer(videoPath: video.videoPath, isShort: true),
+          child: YouTubeVideoPlayer(videoId: video.id, videoPath: video.videoPath, isShort: true),
         ),
         Positioned(
           bottom: 0,

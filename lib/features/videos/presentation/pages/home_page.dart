@@ -98,7 +98,7 @@ class HomePage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final seriesAsync = ref.watch(filteredSeriesProvider);
+    final videosAsync = ref.watch(randomVideosProvider);
     final isSearchVisible = ref.watch(isSearchVisibleProvider);
     final searchQuery = ref.watch(searchQueryProvider);
 
@@ -108,7 +108,7 @@ class HomePage extends ConsumerWidget {
             ? TextField(
                 autofocus: true,
                 decoration: const InputDecoration(
-                  hintText: 'Search series...',
+                  hintText: 'Search videos...',
                   border: InputBorder.none,
                 ),
                 onChanged: (val) => ref.read(searchQueryProvider.notifier).state = val,
@@ -144,19 +144,24 @@ class HomePage extends ConsumerWidget {
           const SizedBox(width: 12),
         ],
       ),
-      body: seriesAsync.when(
-        data: (series) => ListView.builder(
-          itemCount: series.length,
-          itemBuilder: (context, index) {
-            return SeriesCard(series: series[index]);
-          },
-        ),
+      body: videosAsync.when(
+        data: (videos) {
+          final query = searchQuery.toLowerCase();
+          final filtered = videos.where((v) => v.title.toLowerCase().contains(query)).toList();
+          return ListView.builder(
+            itemCount: filtered.length,
+            itemBuilder: (context, index) {
+              return VideoCard(video: filtered[index]);
+            },
+          );
+        },
         loading: () => const Center(child: CircularProgressIndicator(color: Colors.red)),
         error: (e, s) => Center(child: Text('Error loading videos: $e')),
       ),
     );
   }
 }
+
 
 class VideoCard extends StatelessWidget {
   final VideoModel video;
