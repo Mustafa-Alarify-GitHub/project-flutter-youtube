@@ -7,31 +7,35 @@ import 'package:path_provider/path_provider.dart';
 import 'package:get_thumbnail_video/video_thumbnail.dart';
 
 class ThumbnailHelper {
-  static final Map<String, Uint8List> _cache = {};
+  static final Map<String, Uint8List> _memCache = {};
 
   static Future<Uint8List?> getThumbnail(String videoPath) async {
-    if (_cache.containsKey(videoPath)) return _cache[videoPath];
+    if (_memCache.containsKey(videoPath)) return _memCache[videoPath];
 
     try {
+      final tempDir = await getTemporaryDirectory();
+      final thumbFileName = 'thumb_${videoPath.replaceAll('/', '_').replaceAll('.', '_')}.jpg';
+      final thumbFile = File('${tempDir.path}/$thumbFileName');
+
+      if (await thumbFile.exists()) {
+        final bytes = await thumbFile.readAsBytes();
+        _memCache[videoPath] = bytes;
+        return bytes;
+      }
+
       String pathForThumbnail = videoPath;
+      bool isTemporaryVideo = false;
 
       if (videoPath.startsWith('assets/')) {
         final byteData = await rootBundle.load(videoPath);
-        final tempDir = await getTemporaryDirectory();
-        // Create a safe, unique filename based on the asset path
-        final fileName = videoPath.replaceAll('/', '_');
-        final file = File('${tempDir.path}/$fileName');
-
-        if (!await file.exists()) {
-          // Write the asset bytes to the temporary file
-          await file.writeAsBytes(
-            byteData.buffer.asUint8List(
-              byteData.offsetInBytes,
-              byteData.lengthInBytes,
-            ),
-          );
-        }
-        pathForThumbnail = file.path;
+        final videoFileName = 'temp_vid_${DateTime.now().millisecondsSinceEpoch}.mp4';
+        final tempVideoFile = File('${tempDir.path}/$videoFileName');
+        
+        await tempVideoFile.writeAsBytes(
+          byteData.buffer.asUint8List(byteData.offsetInBytes, byteData.lengthInBytes),
+        );
+        pathForThumbnail = tempVideoFile.path;
+        isTemporaryVideo = true;
       }
 
       final uint8list = await VideoThumbnail.thumbnailData(
@@ -41,7 +45,16 @@ class ThumbnailHelper {
         quality: 50,
       );
 
-      _cache[videoPath] = uint8list;
+      if (isTemporaryVideo) {
+        final file = File(pathForThumbnail);
+        if (await file.exists()) await file.delete();
+      }
+
+      if (uint8list != null) {
+        await thumbFile.writeAsBytes(uint8list);
+        _memCache[videoPath] = uint8list;
+      }
+
       return uint8list;
     } catch (e) {
       debugPrint('Error generating thumbnail for $videoPath: $e');

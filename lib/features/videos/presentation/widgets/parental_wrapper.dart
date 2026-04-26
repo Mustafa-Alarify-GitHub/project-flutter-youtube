@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:ww/features/videos/presentation/pages/parental_settings_page.dart';
 import 'package:ww/features/videos/presentation/providers/parental_provider.dart';
 import 'package:ww/features/videos/presentation/widgets/math_gate_dialog.dart';
 
@@ -41,7 +42,14 @@ class _ParentalWrapperState extends ConsumerState<ParentalWrapper> with WidgetsB
   void _startTimer() {
     _timer?.cancel();
     _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
-      ref.read(parentalProvider.notifier).incrementConsumedTime(1);
+      final pState = ref.read(parentalProvider);
+      final isLimitReached = pState.dailyTimeLimitMinutes > 0 && 
+                             pState.consumedTimeSeconds >= (pState.dailyTimeLimitMinutes * 60);
+      
+      // Only increment if limit is NOT reached
+      if (!isLimitReached) {
+        ref.read(parentalProvider.notifier).incrementConsumedTime(1);
+      }
     });
   }
 
@@ -54,10 +62,8 @@ class _ParentalWrapperState extends ConsumerState<ParentalWrapper> with WidgetsB
     final parentalState = ref.watch(parentalProvider);
     
     // Calculate if time limit is reached
-    bool isTimeUp = false;
-    if (parentalState.dailyTimeLimitMinutes > 0) {
-      isTimeUp = parentalState.consumedTimeSeconds >= (parentalState.dailyTimeLimitMinutes * 60);
-    }
+    final bool isTimeUp = parentalState.dailyTimeLimitMinutes > 0 && 
+                          parentalState.consumedTimeSeconds >= (parentalState.dailyTimeLimitMinutes * 60);
 
     return Stack(
       children: [
@@ -74,78 +80,130 @@ class _ParentalWrapperState extends ConsumerState<ParentalWrapper> with WidgetsB
         // Lock Screen Overlay
         if (isTimeUp)
           Material(
-            color: Colors.black,
             child: Container(
               width: double.infinity,
-              padding: const EdgeInsets.symmetric(horizontal: 24),
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                  colors: [
+                    const Color(0xFF1A1A1A),
+                    Colors.black.withOpacity(0.95),
+                  ],
+                ),
+              ),
+              padding: const EdgeInsets.symmetric(horizontal: 32),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const Icon(Icons.timer_off, size: 80, color: Colors.red),
-                  const SizedBox(height: 24),
+                  Container(
+                    padding: const EdgeInsets.all(24),
+                    decoration: BoxDecoration(
+                      color: Colors.red.withOpacity(0.1),
+                      shape: BoxShape.circle,
+                      border: Border.all(color: Colors.red.withOpacity(0.2), width: 2),
+                    ),
+                    child: const Icon(Icons.auto_awesome_motion_rounded, size: 64, color: Colors.red),
+                  ),
+                  const SizedBox(height: 40),
                   const Text(
-                    'انتهى الوقت المسموح لليوم!',
+                    'وقت الاستراحة!',
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       color: Colors.white,
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold,
+                      fontSize: 32,
+                      fontWeight: FontWeight.w900,
+                      letterSpacing: -1,
                     ),
                   ),
-                  const SizedBox(height: 12),
-                  Text(
-                    'تم استهلاك ${parentalState.dailyTimeLimitMinutes} دقيقة.',
-                    style: const TextStyle(color: Colors.grey, fontSize: 16),
+                  const SizedBox(height: 16),
+                  Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                    decoration: BoxDecoration(
+                      color: Colors.white.withOpacity(0.05),
+                      borderRadius: BorderRadius.circular(15),
+                    ),
+                    child: Text(
+                      'لقد استنفدت وقتك اليوم (${parentalState.dailyTimeLimitMinutes} دقيقة)',
+                      style: const TextStyle(color: Colors.white70, fontSize: 15),
+                    ),
                   ),
-                  const SizedBox(height: 48),
+                  const SizedBox(height: 60),
                   
-                  // Snooze Button with Math Gate
                   if (parentalState.usedSnoozes < parentalState.allowedSnoozes)
-                    ElevatedButton.icon(
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.red,
-                        padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
-                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
-                      ),
+                    _buildActionButton(
+                      icon: Icons.add_alarm_rounded,
+                      label: 'تمديد الوقت (5 دقائق إضافية)',
                       onPressed: () async {
                         final success = await MathGateDialog.show(context);
                         if (success) {
-                          // Allow 5 minutes snooze
                           ref.read(parentalProvider.notifier).useSnooze(5);
                         }
                       },
-                      icon: const Icon(Icons.add_alarm, color: Colors.white),
-                      label: Text(
-                        'طلب وقت إضافي (غفوة) (${parentalState.allowedSnoozes - parentalState.usedSnoozes} متبقي)',
-                        style: const TextStyle(color: Colors.white, fontSize: 16),
-                      ),
                     ),
                   
-                  if (parentalState.usedSnoozes >= parentalState.allowedSnoozes)
-                    const Text(
-                      'لا يمكن طلب وقت إضافي أكثر لليوم.',
-                      style: TextStyle(color: Colors.grey),
-                    ),
-                    
-                  const SizedBox(height: 24),
-                  TextButton(
+                  const SizedBox(height: 16),
+                  _buildActionButton(
+                    icon: Icons.settings_rounded,
+                    label: 'دخول الوالدين للإعدادات',
+                    isSecondary: true,
                     onPressed: () async {
                       final success = await MathGateDialog.show(context);
                       if (success) {
-                        // In a real app we might open settings, 
-                        // here we just give a hint that parent can increase daily limit
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(content: Text('يمكنك تغيير الإعدادات من أيقونة القفل في الصفحة الرئيسية')),
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => const ParentalSettingsPage()),
                         );
                       }
                     },
-                    child: const Text('دخول الوالدين لتغيير الإعدادات', style: TextStyle(color: Colors.red)),
                   ),
+
+                  if (parentalState.usedSnoozes >= parentalState.allowedSnoozes)
+                    Padding(
+                      padding: const EdgeInsets.only(top: 20),
+                      child: Text(
+                        'تم استهلاك جميع الغفوات (${parentalState.allowedSnoozes}) المتاحة.',
+                        style: const TextStyle(color: Colors.white38, fontSize: 13),
+                      ),
+                    ),
                 ],
               ),
             ),
           ),
       ],
+    );
+  }
+
+  Widget _buildActionButton({
+    required IconData icon,
+    required String label,
+    required VoidCallback onPressed,
+    bool isSecondary = false,
+  }) {
+    return Container(
+      width: double.infinity,
+      height: 64,
+      decoration: BoxDecoration(
+        boxShadow: [
+          if (!isSecondary)
+            BoxShadow(
+              color: Colors.red.withOpacity(0.3),
+              blurRadius: 20,
+              offset: const Offset(0, 8),
+            ),
+        ],
+      ),
+      child: ElevatedButton.icon(
+        style: ElevatedButton.styleFrom(
+          backgroundColor: isSecondary ? Colors.white.withOpacity(0.1) : Colors.red,
+          foregroundColor: Colors.white,
+          elevation: 0,
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+        ),
+        onPressed: onPressed,
+        icon: Icon(icon),
+        label: Text(label, style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+      ),
     );
   }
 }

@@ -51,16 +51,18 @@ class _YouTubeVideoPlayerState extends ConsumerState<YouTubeVideoPlayer> {
     }
 
     final prefs = await SharedPreferences.getInstance();
-    final savedPos = prefs.getInt('pos_${widget.videoId}');
-    if (savedPos != null) {
-      await _videoPlayerController.seekTo(Duration(milliseconds: savedPos));
-    }
-
-    _videoPlayerController.addListener(() {
-      if (_videoPlayerController.value.isPlaying) {
-        prefs.setInt('pos_${widget.videoId}', _videoPlayerController.value.position.inMilliseconds);
+    if (!widget.isShort) {
+      final savedPos = prefs.getInt('pos_${widget.videoId}');
+      if (savedPos != null) {
+        await _videoPlayerController.seekTo(Duration(milliseconds: savedPos));
       }
-    });
+
+      _videoPlayerController.addListener(() {
+        if (_videoPlayerController.value.isPlaying) {
+          prefs.setInt('pos_${widget.videoId}', _videoPlayerController.value.position.inMilliseconds);
+        }
+      });
+    }
 
     _chewieController = ChewieController(
       videoPlayerController: _videoPlayerController,
@@ -89,7 +91,7 @@ class _YouTubeVideoPlayerState extends ConsumerState<YouTubeVideoPlayer> {
   @override
   void dispose() {
     SharedPreferences.getInstance().then((prefs) {
-      if (_videoPlayerController.value.isInitialized) {
+      if (!widget.isShort && _videoPlayerController.value.isInitialized) {
         prefs.setInt('pos_${widget.videoId}', _videoPlayerController.value.position.inMilliseconds);
       }
     });
@@ -104,6 +106,15 @@ class _YouTubeVideoPlayerState extends ConsumerState<YouTubeVideoPlayer> {
     ref.listen(parentalProvider.select((s) => s.maxVolume), (prev, next) {
       if (_videoPlayerController.value.isInitialized) {
         _videoPlayerController.setVolume(next);
+      }
+    });
+
+    // Pause video if time is up
+    ref.listen(parentalProvider, (prev, next) {
+      final isTimeUp = next.dailyTimeLimitMinutes > 0 && 
+                       next.consumedTimeSeconds >= (next.dailyTimeLimitMinutes * 60);
+      if (isTimeUp && _videoPlayerController.value.isPlaying) {
+        _videoPlayerController.pause();
       }
     });
 
