@@ -1,115 +1,1604 @@
 [
   {
-    "id": "spy",
-    "title": "الجاسوسات",
+    "id": "tom_friends",
+    "title": "توم المتكلم والأصدقاء",
     "thumbnail_path": "assets/images/series1_thumb.jpg",
     "episodes": [
       {
-        "id": "spy_ep1",
-        "title": "Episode 1",
-        "video_path": "assets/videos/series/spy/1.mp4",
+        "id": "tom_friends_ep1",
+        "title": "Talking Tom and Friends -",
+        "video_path": "assets/video/sseries/(2014- ) توم المتكلم والأصدقاء/Talking Tom and Friends - S01E01.mp4",
         "thumbnail_path": "assets/images/series1_thumb.jpg",
-        "duration": "24:00",
-        "uploader": "Spy x Family Channel",
-        "views": "1.5M",
-        "upload_date": "1 day ago"
+        "duration": "10:32",
+        "uploader": "توم المتكلم للأطفال",
+        "views": "790K",
+        "upload_date": "قبل أسبوع"
       },
       {
-        "id": "spy_ep2",
-        "title": "Episode 2",
-        "video_path": "assets/videos/series/spy/2.mp4",
+        "id": "tom_friends_ep2",
+        "title": "Talking Tom and Friends -",
+        "video_path": "assets/video/sseries/(2014- ) توم المتكلم والأصدقاء/Talking Tom and Friends - S01E02.mp4",
         "thumbnail_path": "assets/images/series1_thumb.jpg",
-        "duration": "24:00",
-        "uploader": "Spy x Family Channel",
-        "views": "1.2M",
-        "upload_date": "1 day ago"
+        "duration": "10:34",
+        "uploader": "توم المتكلم للأطفال",
+        "views": "780K",
+        "upload_date": "قبل 2 أسابيع"
       },
       {
-        "id": "spy_ep3",
-        "title": "Episode 3",
-        "video_path": "assets/videos/series/spy/3.mp4",
+        "id": "tom_friends_ep3",
+        "title": "Talking Tom and Friends -",
+        "video_path": "assets/video/sseries/(2014- ) توم المتكلم والأصدقاء/Talking Tom and Friends - S01E03.mp4",
         "thumbnail_path": "assets/images/series1_thumb.jpg",
-        "duration": "24:00",
-        "uploader": "Spy x Family Channel",
-        "views": "1.1M",
-        "upload_date": "1 day ago"
+        "duration": "10:25",
+        "uploader": "توم المتكلم للأطفال",
+        "views": "770K",
+        "upload_date": "قبل 3 أسابيع"
       },
       {
-        "id": "spy_ep4",
-        "title": "Episode 4",
-        "video_path": "assets/videos/series/spy/4.mp4",
+        "id": "tom_friends_ep4",
+        "title": "Talking Tom and Friends -",
+        "video_path": "assets/video/sseries/(2014- ) توم المتكلم والأصدقاء/Talking Tom and Friends - S01E04.mp4",
         "thumbnail_path": "assets/images/series1_thumb.jpg",
-        "duration": "24:00",
-        "uploader": "Spy x Family Channel",
-        "views": "1.0M",
-        "upload_date": "1 day ago"
+        "duration": "9:52",
+        "uploader": "توم المتكلم للأطفال",
+        "views": "760K",
+        "upload_date": "قبل 4 أسابيع"
       },
       {
-        "id": "spy_ep5",
-        "title": "Episode 5",
-        "video_path": "assets/videos/series/spy/5.mp4",
+        "id": "tom_friends_ep5",
+        "title": "Talking Tom and Friends -",
+        "video_path": "assets/video/sseries/(2014- ) توم المتكلم والأصدقاء/Talking Tom and Friends - S01E05.mp4",
         "thumbnail_path": "assets/images/series1_thumb.jpg",
-        "duration": "24:00",
-        "uploader": "Spy x Family Channel",
-        "views": "900K",
-        "upload_date": "1 day ago"
+        "duration": "10:22",
+        "uploader": "توم المتكلم للأطفال",
+        "views": "800K",
+        "upload_date": "قبل 5 أسابيع"
+      },
+      {
+        "id": "tom_friends_ep6",
+        "title": "Talking Tom and Friends -",
+        "video_path": "assets/video/sseries/(2014- ) توم المتكلم والأصدقاء/Talking Tom and Friends - S01E06.mp4",
+        "thumbnail_path": "assets/images/series1_thumb.jpg",
+        "duration": "10:39",
+        "uploader": "توم المتكلم للأطفال",
+        "views": "790K",
+        "upload_date": "قبل 6 أسابيع"
+      },
+      {
+        "id": "tom_friends_ep7",
+        "title": "Talking Tom and Friends -",
+        "video_path": "assets/video/sseries/(2014- ) توم المتكلم والأصدقاء/Talking Tom and Friends - S01E07.mp4",
+        "thumbnail_path": "assets/images/series1_thumb.jpg",
+        "duration": "9:56",
+        "uploader": "توم المتكلم للأطفال",
+        "views": "780K",
+        "upload_date": "قبل 7 أسابيع"
+      },
+      {
+        "id": "tom_friends_ep8",
+        "title": "Talking Tom and Friends -",
+        "video_path": "assets/video/sseries/(2014- ) توم المتكلم والأصدقاء/Talking Tom and Friends - S01E08.mp4",
+        "thumbnail_path": "assets/images/series1_thumb.jpg",
+        "duration": "10:12",
+        "uploader": "توم المتكلم للأطفال",
+        "views": "770K",
+        "upload_date": "قبل 8 أسابيع"
+      },
+      {
+        "id": "tom_friends_ep9",
+        "title": "Talking Tom and Friends -",
+        "video_path": "assets/video/sseries/(2014- ) توم المتكلم والأصدقاء/Talking Tom and Friends - S01E09.mp4",
+        "thumbnail_path": "assets/images/series1_thumb.jpg",
+        "duration": "7:45",
+        "uploader": "توم المتكلم للأطفال",
+        "views": "760K",
+        "upload_date": "قبل 9 أسابيع"
+      },
+      {
+        "id": "tom_friends_ep10",
+        "title": "Talking Tom and Friends -",
+        "video_path": "assets/video/sseries/(2014- ) توم المتكلم والأصدقاء/Talking Tom and Friends - S01E10.mp4",
+        "thumbnail_path": "assets/images/series1_thumb.jpg",
+        "duration": "10:29",
+        "uploader": "توم المتكلم للأطفال",
+        "views": "800K",
+        "upload_date": "قبل 10 أسابيع"
+      },
+      {
+        "id": "tom_friends_ep11",
+        "title": "Talking Tom and Friends -",
+        "video_path": "assets/video/sseries/(2014- ) توم المتكلم والأصدقاء/Talking Tom and Friends - S01E11.mp4",
+        "thumbnail_path": "assets/images/series1_thumb.jpg",
+        "duration": "10:01",
+        "uploader": "توم المتكلم للأطفال",
+        "views": "790K",
+        "upload_date": "قبل 11 أسابيع"
+      },
+      {
+        "id": "tom_friends_ep12",
+        "title": "Talking Tom and Friends -",
+        "video_path": "assets/video/sseries/(2014- ) توم المتكلم والأصدقاء/Talking Tom and Friends - S01E12.mp4",
+        "thumbnail_path": "assets/images/series1_thumb.jpg",
+        "duration": "10:18",
+        "uploader": "توم المتكلم للأطفال",
+        "views": "780K",
+        "upload_date": "قبل 12 أسابيع"
+      },
+      {
+        "id": "tom_friends_ep13",
+        "title": "Talking Tom and Friends -",
+        "video_path": "assets/video/sseries/(2014- ) توم المتكلم والأصدقاء/Talking Tom and Friends - S01E13.mp4",
+        "thumbnail_path": "assets/images/series1_thumb.jpg",
+        "duration": "10:12",
+        "uploader": "توم المتكلم للأطفال",
+        "views": "770K",
+        "upload_date": "قبل 13 أسابيع"
+      },
+      {
+        "id": "tom_friends_ep14",
+        "title": "Talking Tom and Friends -",
+        "video_path": "assets/video/sseries/(2014- ) توم المتكلم والأصدقاء/Talking Tom and Friends - S01E14.mp4",
+        "thumbnail_path": "assets/images/series1_thumb.jpg",
+        "duration": "10:27",
+        "uploader": "توم المتكلم للأطفال",
+        "views": "760K",
+        "upload_date": "قبل 14 أسابيع"
+      },
+      {
+        "id": "tom_friends_ep15",
+        "title": "Talking Tom and Friends -",
+        "video_path": "assets/video/sseries/(2014- ) توم المتكلم والأصدقاء/Talking Tom and Friends - S01E15.mp4",
+        "thumbnail_path": "assets/images/series1_thumb.jpg",
+        "duration": "10:28",
+        "uploader": "توم المتكلم للأطفال",
+        "views": "800K",
+        "upload_date": "قبل 15 أسابيع"
+      },
+      {
+        "id": "tom_friends_ep16",
+        "title": "Talking Tom and Friends -",
+        "video_path": "assets/video/sseries/(2014- ) توم المتكلم والأصدقاء/Talking Tom and Friends - S01E16.mp4",
+        "thumbnail_path": "assets/images/series1_thumb.jpg",
+        "duration": "10:33",
+        "uploader": "توم المتكلم للأطفال",
+        "views": "790K",
+        "upload_date": "قبل 16 أسابيع"
+      },
+      {
+        "id": "tom_friends_ep17",
+        "title": "Talking Tom and Friends -",
+        "video_path": "assets/video/sseries/(2014- ) توم المتكلم والأصدقاء/Talking Tom and Friends - S01E17.mp4",
+        "thumbnail_path": "assets/images/series1_thumb.jpg",
+        "duration": "10:28",
+        "uploader": "توم المتكلم للأطفال",
+        "views": "780K",
+        "upload_date": "قبل 17 أسابيع"
+      },
+      {
+        "id": "tom_friends_ep18",
+        "title": "Talking Tom and Friends -",
+        "video_path": "assets/video/sseries/(2014- ) توم المتكلم والأصدقاء/Talking Tom and Friends - S01E18.mp4",
+        "thumbnail_path": "assets/images/series1_thumb.jpg",
+        "duration": "10:27",
+        "uploader": "توم المتكلم للأطفال",
+        "views": "770K",
+        "upload_date": "قبل 18 أسابيع"
       }
     ]
   },
   {
-    "id": "s2",
-    "title": "Cooking Masterclass",
-    "thumbnail_path": "assets/images/download.jpg",
+    "id": "ben_10",
+    "title": "بن 10",
+    "thumbnail_path": "assets/images/series1_thumb.jpg",
     "episodes": [
       {
-        "id": "v2_1",
-        "title": "Lesson 1: Knife Skills",
-        "video_path": "assets/videos/series/TheBeginningAftertheEnd/1.mp4",
-        "thumbnail_path": "assets/images/download.jpg",
-        "duration": "15:30",
-        "uploader": "Chef JOORI",
-        "views": "500K",
-        "upload_date": "1 week ago"
+        "id": "ben_10_ep1",
+        "title": "الحلقة 1",
+        "video_path": "assets/video/sseries/Ben 10/Ben 10 S01E01.mp4",
+        "thumbnail_path": "assets/images/series1_thumb.jpg",
+        "duration": "20:35",
+        "uploader": "كرتون نتورك العربية",
+        "views": "1.1M",
+        "upload_date": "قبل أسبوع"
       },
       {
-        "id": "v2_2",
-        "title": "Lesson 1: Knife Skills",
-        "video_path": "assets/videos/series/TheBeginningAftertheEnd/2.mp4",
-        "thumbnail_path": "assets/images/download.jpg",
-        "duration": "15:30",
-        "uploader": "Chef JOORI",
-        "views": "500K",
-        "upload_date": "1 week ago"
+        "id": "ben_10_ep2",
+        "title": "الحلقة 2",
+        "video_path": "assets/video/sseries/Ben 10/Ben 10 S01E02.mp4",
+        "thumbnail_path": "assets/images/series1_thumb.jpg",
+        "duration": "20:35",
+        "uploader": "كرتون نتورك العربية",
+        "views": "1.0M",
+        "upload_date": "قبل 2 أسابيع"
       },
       {
-        "id": "v2_3",
-        "title": "Lesson 1: Knife Skills",
-        "video_path": "assets/videos/series/TheBeginningAftertheEnd/3.mp4",
-        "thumbnail_path": "assets/images/download.jpg",
-        "duration": "15:30",
-        "uploader": "Chef JOORI",
-        "views": "500K",
-        "upload_date": "1 week ago"
+        "id": "ben_10_ep3",
+        "title": "الحلقة 3",
+        "video_path": "assets/video/sseries/Ben 10/Ben 10 S01E03.mp4",
+        "thumbnail_path": "assets/images/series1_thumb.jpg",
+        "duration": "20:47",
+        "uploader": "كرتون نتورك العربية",
+        "views": "0.9M",
+        "upload_date": "قبل 3 أسابيع"
       },
       {
-        "id": "v2_4",
-        "title": "Lesson 1: Knife Skills",
-        "video_path": "assets/videos/series/TheBeginningAftertheEnd/4.mp4",
-        "thumbnail_path": "assets/images/download.jpg",
-        "duration": "15:30",
-        "uploader": "Chef JOORI",
-        "views": "500K",
-        "upload_date": "1 week ago"
+        "id": "ben_10_ep4",
+        "title": "الحلقة 4",
+        "video_path": "assets/video/sseries/Ben 10/Ben 10 S01E04.mp4",
+        "thumbnail_path": "assets/images/series1_thumb.jpg",
+        "duration": "20:29",
+        "uploader": "كرتون نتورك العربية",
+        "views": "0.8M",
+        "upload_date": "قبل 4 أسابيع"
       },
       {
-        "id": "v2_5",
-        "title": "Lesson 1: Knife Skills",
-        "video_path": "assets/videos/series/TheBeginningAftertheEnd/5.mp4",
-        "thumbnail_path": "assets/images/download.jpg",
-        "duration": "15:30",
-        "uploader": "Chef JOORI",
+        "id": "ben_10_ep5",
+        "title": "الحلقة 5",
+        "video_path": "assets/video/sseries/Ben 10/Ben 10 S01E05.mp4",
+        "thumbnail_path": "assets/images/series1_thumb.jpg",
+        "duration": "21:22",
+        "uploader": "كرتون نتورك العربية",
+        "views": "1.2M",
+        "upload_date": "قبل 5 أسابيع"
+      },
+      {
+        "id": "ben_10_ep6",
+        "title": "الحلقة 6",
+        "video_path": "assets/video/sseries/Ben 10/Ben 10 S01E06.mp4",
+        "thumbnail_path": "assets/images/series1_thumb.jpg",
+        "duration": "20:08",
+        "uploader": "كرتون نتورك العربية",
+        "views": "1.1M",
+        "upload_date": "قبل 6 أسابيع"
+      },
+      {
+        "id": "ben_10_ep7",
+        "title": "الحلقة 7",
+        "video_path": "assets/video/sseries/Ben 10/Ben 10 S01E07.mp4",
+        "thumbnail_path": "assets/images/series1_thumb.jpg",
+        "duration": "20:02",
+        "uploader": "كرتون نتورك العربية",
+        "views": "1.0M",
+        "upload_date": "قبل 7 أسابيع"
+      },
+      {
+        "id": "ben_10_ep8",
+        "title": "الحلقة 8",
+        "video_path": "assets/video/sseries/Ben 10/Ben 10 S01E08.mp4",
+        "thumbnail_path": "assets/images/series1_thumb.jpg",
+        "duration": "19:59",
+        "uploader": "كرتون نتورك العربية",
+        "views": "0.9M",
+        "upload_date": "قبل 8 أسابيع"
+      },
+      {
+        "id": "ben_10_ep9",
+        "title": "الحلقة 9",
+        "video_path": "assets/video/sseries/Ben 10/Ben 10 S01E09.mp4",
+        "thumbnail_path": "assets/images/series1_thumb.jpg",
+        "duration": "21:15",
+        "uploader": "كرتون نتورك العربية",
+        "views": "0.8M",
+        "upload_date": "قبل 9 أسابيع"
+      },
+      {
+        "id": "ben_10_ep10",
+        "title": "الحلقة 10",
+        "video_path": "assets/video/sseries/Ben 10/Ben 10 S01E10.mp4",
+        "thumbnail_path": "assets/images/series1_thumb.jpg",
+        "duration": "21:32",
+        "uploader": "كرتون نتورك العربية",
+        "views": "1.2M",
+        "upload_date": "قبل 10 أسابيع"
+      },
+      {
+        "id": "ben_10_ep11",
+        "title": "الحلقة 11",
+        "video_path": "assets/video/sseries/Ben 10/Ben 10 S01E11.mp4",
+        "thumbnail_path": "assets/images/series1_thumb.jpg",
+        "duration": "20:30",
+        "uploader": "كرتون نتورك العربية",
+        "views": "1.1M",
+        "upload_date": "قبل 11 أسابيع"
+      },
+      {
+        "id": "ben_10_ep12",
+        "title": "الحلقة 12",
+        "video_path": "assets/video/sseries/Ben 10/Ben 10 S01E12.mp4",
+        "thumbnail_path": "assets/images/series1_thumb.jpg",
+        "duration": "20:02",
+        "uploader": "كرتون نتورك العربية",
+        "views": "1.0M",
+        "upload_date": "قبل 12 أسابيع"
+      },
+      {
+        "id": "ben_10_ep13",
+        "title": "الحلقة 13",
+        "video_path": "assets/video/sseries/Ben 10/Ben 10 S01E13.mp4",
+        "thumbnail_path": "assets/images/series1_thumb.jpg",
+        "duration": "20:26",
+        "uploader": "كرتون نتورك العربية",
+        "views": "0.9M",
+        "upload_date": "قبل 13 أسابيع"
+      },
+      {
+        "id": "ben_10_ep14",
+        "title": "الحلقة 14",
+        "video_path": "assets/video/sseries/Ben 10/Ben 10 S01E14.mp4",
+        "thumbnail_path": "assets/images/series1_thumb.jpg",
+        "duration": "21:28",
+        "uploader": "كرتون نتورك العربية",
+        "views": "0.8M",
+        "upload_date": "قبل 14 أسابيع"
+      },
+      {
+        "id": "ben_10_ep15",
+        "title": "الحلقة 15",
+        "video_path": "assets/video/sseries/Ben 10/Ben 10 S01E15.mp4",
+        "thumbnail_path": "assets/images/series1_thumb.jpg",
+        "duration": "20:26",
+        "uploader": "كرتون نتورك العربية",
+        "views": "1.2M",
+        "upload_date": "قبل 15 أسابيع"
+      },
+      {
+        "id": "ben_10_ep16",
+        "title": "الحلقة 16",
+        "video_path": "assets/video/sseries/Ben 10/Ben 10 S01E16.mp4",
+        "thumbnail_path": "assets/images/series1_thumb.jpg",
+        "duration": "21:31",
+        "uploader": "كرتون نتورك العربية",
+        "views": "1.1M",
+        "upload_date": "قبل 16 أسابيع"
+      },
+      {
+        "id": "ben_10_ep17",
+        "title": "الحلقة 17",
+        "video_path": "assets/video/sseries/Ben 10/Ben 10 S01E17.mp4",
+        "thumbnail_path": "assets/images/series1_thumb.jpg",
+        "duration": "20:03",
+        "uploader": "كرتون نتورك العربية",
+        "views": "1.0M",
+        "upload_date": "قبل 17 أسابيع"
+      },
+      {
+        "id": "ben_10_ep18",
+        "title": "الحلقة 18",
+        "video_path": "assets/video/sseries/Ben 10/Ben 10 S01E18.mp4",
+        "thumbnail_path": "assets/images/series1_thumb.jpg",
+        "duration": "21:28",
+        "uploader": "كرتون نتورك العربية",
+        "views": "0.9M",
+        "upload_date": "قبل 18 أسابيع"
+      },
+      {
+        "id": "ben_10_ep19",
+        "title": "الحلقة 19",
+        "video_path": "assets/video/sseries/Ben 10/Ben 10 S02E01.mkv",
+        "thumbnail_path": "assets/images/series1_thumb.jpg",
+        "duration": "22:00",
+        "uploader": "كرتون نتورك العربية",
+        "views": "0.8M",
+        "upload_date": "قبل 19 أسابيع"
+      },
+      {
+        "id": "ben_10_ep20",
+        "title": "الحلقة 20",
+        "video_path": "assets/video/sseries/Ben 10/Ben 10 S02E02.mp4",
+        "thumbnail_path": "assets/images/series1_thumb.jpg",
+        "duration": "20:40",
+        "uploader": "كرتون نتورك العربية",
+        "views": "1.2M",
+        "upload_date": "قبل 20 أسابيع"
+      },
+      {
+        "id": "ben_10_ep21",
+        "title": "الحلقة 21",
+        "video_path": "assets/video/sseries/Ben 10/Ben 10 S02E03.mkv",
+        "thumbnail_path": "assets/images/series1_thumb.jpg",
+        "duration": "22:00",
+        "uploader": "كرتون نتورك العربية",
+        "views": "1.1M",
+        "upload_date": "قبل 21 أسابيع"
+      },
+      {
+        "id": "ben_10_ep22",
+        "title": "الحلقة 22",
+        "video_path": "assets/video/sseries/Ben 10/Ben 10 S02E04.mkv",
+        "thumbnail_path": "assets/images/series1_thumb.jpg",
+        "duration": "22:00",
+        "uploader": "كرتون نتورك العربية",
+        "views": "1.0M",
+        "upload_date": "قبل 22 أسابيع"
+      },
+      {
+        "id": "ben_10_ep23",
+        "title": "الحلقة 23",
+        "video_path": "assets/video/sseries/Ben 10/Ben 10 S02E05.mkv",
+        "thumbnail_path": "assets/images/series1_thumb.jpg",
+        "duration": "22:00",
+        "uploader": "كرتون نتورك العربية",
+        "views": "0.9M",
+        "upload_date": "قبل 23 أسابيع"
+      },
+      {
+        "id": "ben_10_ep24",
+        "title": "الحلقة 24",
+        "video_path": "assets/video/sseries/Ben 10/Ben 10 S02E06.mkv",
+        "thumbnail_path": "assets/images/series1_thumb.jpg",
+        "duration": "22:00",
+        "uploader": "كرتون نتورك العربية",
+        "views": "0.8M",
+        "upload_date": "قبل 24 أسابيع"
+      }
+    ]
+  },
+  {
+    "id": "sonic_x",
+    "title": "سونيك X",
+    "thumbnail_path": "assets/images/series1_thumb.jpg",
+    "episodes": [
+      {
+        "id": "sonic_x_ep1",
+        "title": "Sonic X -",
+        "video_path": "assets/video/sseries/Sonic X/Sonic X - S01E35 .mp4",
+        "thumbnail_path": "assets/images/series1_thumb.jpg",
+        "duration": "19:51",
+        "uploader": "سونيك العربي",
+        "views": "490K",
+        "upload_date": "قبل أسبوع"
+      },
+      {
+        "id": "sonic_x_ep2",
+        "title": "Sonic X -",
+        "video_path": "assets/video/sseries/Sonic X/Sonic X - S01E40 .mp4",
+        "thumbnail_path": "assets/images/series1_thumb.jpg",
+        "duration": "19:40",
+        "uploader": "سونيك العربي",
+        "views": "480K",
+        "upload_date": "قبل 2 أسابيع"
+      },
+      {
+        "id": "sonic_x_ep3",
+        "title": "Sonic X -",
+        "video_path": "assets/video/sseries/Sonic X/Sonic X - S01E69 .mp4",
+        "thumbnail_path": "assets/images/series1_thumb.jpg",
+        "duration": "18:44",
+        "uploader": "سونيك العربي",
+        "views": "470K",
+        "upload_date": "قبل 3 أسابيع"
+      },
+      {
+        "id": "sonic_x_ep4",
+        "title": "Sonic X -",
+        "video_path": "assets/video/sseries/Sonic X/Sonic X - S01E70 .mp4",
+        "thumbnail_path": "assets/images/series1_thumb.jpg",
+        "duration": "18:50",
+        "uploader": "سونيك العربي",
+        "views": "460K",
+        "upload_date": "قبل 4 أسابيع"
+      },
+      {
+        "id": "sonic_x_ep5",
+        "title": "Sonic X -",
+        "video_path": "assets/video/sseries/Sonic X/Sonic X - S01E71 .mp4",
+        "thumbnail_path": "assets/images/series1_thumb.jpg",
+        "duration": "19:12",
+        "uploader": "سونيك العربي",
         "views": "500K",
-        "upload_date": "1 week ago"
+        "upload_date": "قبل 5 أسابيع"
+      },
+      {
+        "id": "sonic_x_ep6",
+        "title": "Sonic X -",
+        "video_path": "assets/video/sseries/Sonic X/Sonic X - S01E72 .mp4",
+        "thumbnail_path": "assets/images/series1_thumb.jpg",
+        "duration": "18:34",
+        "uploader": "سونيك العربي",
+        "views": "490K",
+        "upload_date": "قبل 6 أسابيع"
+      },
+      {
+        "id": "sonic_x_ep7",
+        "title": "Sonic X -",
+        "video_path": "assets/video/sseries/Sonic X/Sonic X - S01E73 .mp4",
+        "thumbnail_path": "assets/images/series1_thumb.jpg",
+        "duration": "18:20",
+        "uploader": "سونيك العربي",
+        "views": "480K",
+        "upload_date": "قبل 7 أسابيع"
+      },
+      {
+        "id": "sonic_x_ep8",
+        "title": "Sonic X -",
+        "video_path": "assets/video/sseries/Sonic X/Sonic X - S01E74 .mp4",
+        "thumbnail_path": "assets/images/series1_thumb.jpg",
+        "duration": "17:44",
+        "uploader": "سونيك العربي",
+        "views": "470K",
+        "upload_date": "قبل 8 أسابيع"
+      },
+      {
+        "id": "sonic_x_ep9",
+        "title": "Sonic X -",
+        "video_path": "assets/video/sseries/Sonic X/Sonic X - S01E75 .mp4",
+        "thumbnail_path": "assets/images/series1_thumb.jpg",
+        "duration": "18:34",
+        "uploader": "سونيك العربي",
+        "views": "460K",
+        "upload_date": "قبل 9 أسابيع"
+      },
+      {
+        "id": "sonic_x_ep10",
+        "title": "Sonic X -",
+        "video_path": "assets/video/sseries/Sonic X/Sonic X - S01E76 .mp4",
+        "thumbnail_path": "assets/images/series1_thumb.jpg",
+        "duration": "18:35",
+        "uploader": "سونيك العربي",
+        "views": "500K",
+        "upload_date": "قبل 10 أسابيع"
+      },
+      {
+        "id": "sonic_x_ep11",
+        "title": "Sonic X -",
+        "video_path": "assets/video/sseries/Sonic X/Sonic X - S01E77 .mp4",
+        "thumbnail_path": "assets/images/series1_thumb.jpg",
+        "duration": "18:53",
+        "uploader": "سونيك العربي",
+        "views": "490K",
+        "upload_date": "قبل 11 أسابيع"
+      },
+      {
+        "id": "sonic_x_ep12",
+        "title": "Sonic X -",
+        "video_path": "assets/video/sseries/Sonic X/Sonic X - S01E78 .mp4",
+        "thumbnail_path": "assets/images/series1_thumb.jpg",
+        "duration": "18:58",
+        "uploader": "سونيك العربي",
+        "views": "480K",
+        "upload_date": "قبل 12 أسابيع"
+      },
+      {
+        "id": "sonic_x_ep13",
+        "title": "Sonic X -",
+        "video_path": "assets/video/sseries/Sonic X/Sonic X - S01E79 .mp4",
+        "thumbnail_path": "assets/images/series1_thumb.jpg",
+        "duration": "18:56",
+        "uploader": "سونيك العربي",
+        "views": "470K",
+        "upload_date": "قبل 13 أسابيع"
+      },
+      {
+        "id": "sonic_x_ep14",
+        "title": "Sonic X -",
+        "video_path": "assets/video/sseries/Sonic X/Sonic X - S01E80 .mp4",
+        "thumbnail_path": "assets/images/series1_thumb.jpg",
+        "duration": "19:40",
+        "uploader": "سونيك العربي",
+        "views": "460K",
+        "upload_date": "قبل 14 أسابيع"
+      },
+      {
+        "id": "sonic_x_ep15",
+        "title": "Sonic X -",
+        "video_path": "assets/video/sseries/Sonic X/Sonic X - S01E81 - (End).mp4",
+        "thumbnail_path": "assets/images/series1_thumb.jpg",
+        "duration": "17:42",
+        "uploader": "سونيك العربي",
+        "views": "500K",
+        "upload_date": "قبل 15 أسابيع"
+      }
+    ]
+  },
+  {
+    "id": "gumball_s1",
+    "title": "عالم غامبول المدهش - الموسم 1",
+    "thumbnail_path": "assets/images/series1_thumb.jpg",
+    "episodes": [
+      {
+        "id": "gumball_s1_ep1",
+        "title": "The Wonderfully Weird World of Gumball -",
+        "video_path": "assets/video/sseries/The Wonderfully Weird World of Gumball - Season 1/The Wonderfully Weird World of Gumball - S01E01.mp4",
+        "thumbnail_path": "assets/images/series1_thumb.jpg",
+        "duration": "13:12",
+        "uploader": "كرتون نتورك العربية",
+        "views": "2.0M",
+        "upload_date": "قبل أسبوع"
+      },
+      {
+        "id": "gumball_s1_ep2",
+        "title": "The Wonderfully Weird World of Gumball -",
+        "video_path": "assets/video/sseries/The Wonderfully Weird World of Gumball - Season 1/The Wonderfully Weird World of Gumball - S01E02.mp4",
+        "thumbnail_path": "assets/images/series1_thumb.jpg",
+        "duration": "12:07",
+        "uploader": "كرتون نتورك العربية",
+        "views": "1.9M",
+        "upload_date": "قبل 2 أسابيع"
+      },
+      {
+        "id": "gumball_s1_ep3",
+        "title": "The Wonderfully Weird World of Gumball -",
+        "video_path": "assets/video/sseries/The Wonderfully Weird World of Gumball - Season 1/The Wonderfully Weird World of Gumball - S01E03.mp4",
+        "thumbnail_path": "assets/images/series1_thumb.jpg",
+        "duration": "12:16",
+        "uploader": "كرتون نتورك العربية",
+        "views": "1.8M",
+        "upload_date": "قبل 3 أسابيع"
+      },
+      {
+        "id": "gumball_s1_ep4",
+        "title": "The Wonderfully Weird World of Gumball -",
+        "video_path": "assets/video/sseries/The Wonderfully Weird World of Gumball - Season 1/The Wonderfully Weird World of Gumball - S01E04.mp4",
+        "thumbnail_path": "assets/images/series1_thumb.jpg",
+        "duration": "12:02",
+        "uploader": "كرتون نتورك العربية",
+        "views": "1.7M",
+        "upload_date": "قبل 4 أسابيع"
+      },
+      {
+        "id": "gumball_s1_ep5",
+        "title": "The Wonderfully Weird World of Gumball -",
+        "video_path": "assets/video/sseries/The Wonderfully Weird World of Gumball - Season 1/The Wonderfully Weird World of Gumball - S01E05.mp4",
+        "thumbnail_path": "assets/images/series1_thumb.jpg",
+        "duration": "12:18",
+        "uploader": "كرتون نتورك العربية",
+        "views": "2.1M",
+        "upload_date": "قبل 5 أسابيع"
+      },
+      {
+        "id": "gumball_s1_ep6",
+        "title": "The Wonderfully Weird World of Gumball -",
+        "video_path": "assets/video/sseries/The Wonderfully Weird World of Gumball - Season 1/The Wonderfully Weird World of Gumball - S01E06.mp4",
+        "thumbnail_path": "assets/images/series1_thumb.jpg",
+        "duration": "12:09",
+        "uploader": "كرتون نتورك العربية",
+        "views": "2.0M",
+        "upload_date": "قبل 6 أسابيع"
+      },
+      {
+        "id": "gumball_s1_ep7",
+        "title": "The Wonderfully Weird World of Gumball -",
+        "video_path": "assets/video/sseries/The Wonderfully Weird World of Gumball - Season 1/The Wonderfully Weird World of Gumball - S01E07.mp4",
+        "thumbnail_path": "assets/images/series1_thumb.jpg",
+        "duration": "12:05",
+        "uploader": "كرتون نتورك العربية",
+        "views": "1.9M",
+        "upload_date": "قبل 7 أسابيع"
+      },
+      {
+        "id": "gumball_s1_ep8",
+        "title": "The Wonderfully Weird World of Gumball -",
+        "video_path": "assets/video/sseries/The Wonderfully Weird World of Gumball - Season 1/The Wonderfully Weird World of Gumball - S01E08.mp4",
+        "thumbnail_path": "assets/images/series1_thumb.jpg",
+        "duration": "12:06",
+        "uploader": "كرتون نتورك العربية",
+        "views": "1.8M",
+        "upload_date": "قبل 8 أسابيع"
+      },
+      {
+        "id": "gumball_s1_ep9",
+        "title": "The Wonderfully Weird World of Gumball -",
+        "video_path": "assets/video/sseries/The Wonderfully Weird World of Gumball - Season 1/The Wonderfully Weird World of Gumball - S01E09.mp4",
+        "thumbnail_path": "assets/images/series1_thumb.jpg",
+        "duration": "12:09",
+        "uploader": "كرتون نتورك العربية",
+        "views": "1.7M",
+        "upload_date": "قبل 9 أسابيع"
+      },
+      {
+        "id": "gumball_s1_ep10",
+        "title": "The Wonderfully Weird World of Gumball -",
+        "video_path": "assets/video/sseries/The Wonderfully Weird World of Gumball - Season 1/The Wonderfully Weird World of Gumball - S01E10.mp4",
+        "thumbnail_path": "assets/images/series1_thumb.jpg",
+        "duration": "12:11",
+        "uploader": "كرتون نتورك العربية",
+        "views": "2.1M",
+        "upload_date": "قبل 10 أسابيع"
+      },
+      {
+        "id": "gumball_s1_ep11",
+        "title": "The Wonderfully Weird World of Gumball -",
+        "video_path": "assets/video/sseries/The Wonderfully Weird World of Gumball - Season 1/The Wonderfully Weird World of Gumball - S01E11.mp4",
+        "thumbnail_path": "assets/images/series1_thumb.jpg",
+        "duration": "12:06",
+        "uploader": "كرتون نتورك العربية",
+        "views": "2.0M",
+        "upload_date": "قبل 11 أسابيع"
+      },
+      {
+        "id": "gumball_s1_ep12",
+        "title": "The Wonderfully Weird World of Gumball -",
+        "video_path": "assets/video/sseries/The Wonderfully Weird World of Gumball - Season 1/The Wonderfully Weird World of Gumball - S01E12.mp4",
+        "thumbnail_path": "assets/images/series1_thumb.jpg",
+        "duration": "12:08",
+        "uploader": "كرتون نتورك العربية",
+        "views": "1.9M",
+        "upload_date": "قبل 12 أسابيع"
+      },
+      {
+        "id": "gumball_s1_ep13",
+        "title": "The Wonderfully Weird World of Gumball -",
+        "video_path": "assets/video/sseries/The Wonderfully Weird World of Gumball - Season 1/The Wonderfully Weird World of Gumball - S01E13.mp4",
+        "thumbnail_path": "assets/images/series1_thumb.jpg",
+        "duration": "12:04",
+        "uploader": "كرتون نتورك العربية",
+        "views": "1.8M",
+        "upload_date": "قبل 13 أسابيع"
+      },
+      {
+        "id": "gumball_s1_ep14",
+        "title": "The Wonderfully Weird World of Gumball -",
+        "video_path": "assets/video/sseries/The Wonderfully Weird World of Gumball - Season 1/The Wonderfully Weird World of Gumball - S01E14.mp4",
+        "thumbnail_path": "assets/images/series1_thumb.jpg",
+        "duration": "11:58",
+        "uploader": "كرتون نتورك العربية",
+        "views": "1.7M",
+        "upload_date": "قبل 14 أسابيع"
+      },
+      {
+        "id": "gumball_s1_ep15",
+        "title": "The Wonderfully Weird World of Gumball -",
+        "video_path": "assets/video/sseries/The Wonderfully Weird World of Gumball - Season 1/The Wonderfully Weird World of Gumball - S01E15.mp4",
+        "thumbnail_path": "assets/images/series1_thumb.jpg",
+        "duration": "12:20",
+        "uploader": "كرتون نتورك العربية",
+        "views": "2.1M",
+        "upload_date": "قبل 15 أسابيع"
+      },
+      {
+        "id": "gumball_s1_ep16",
+        "title": "The Wonderfully Weird World of Gumball -",
+        "video_path": "assets/video/sseries/The Wonderfully Weird World of Gumball - Season 1/The Wonderfully Weird World of Gumball - S01E16.mp4",
+        "thumbnail_path": "assets/images/series1_thumb.jpg",
+        "duration": "11:55",
+        "uploader": "كرتون نتورك العربية",
+        "views": "2.0M",
+        "upload_date": "قبل 16 أسابيع"
+      },
+      {
+        "id": "gumball_s1_ep17",
+        "title": "The Wonderfully Weird World of Gumball -",
+        "video_path": "assets/video/sseries/The Wonderfully Weird World of Gumball - Season 1/The Wonderfully Weird World of Gumball - S01E17.mp4",
+        "thumbnail_path": "assets/images/series1_thumb.jpg",
+        "duration": "12:01",
+        "uploader": "كرتون نتورك العربية",
+        "views": "1.9M",
+        "upload_date": "قبل 17 أسابيع"
+      },
+      {
+        "id": "gumball_s1_ep18",
+        "title": "The Wonderfully Weird World of Gumball -",
+        "video_path": "assets/video/sseries/The Wonderfully Weird World of Gumball - Season 1/The Wonderfully Weird World of Gumball - S01E18.mp4",
+        "thumbnail_path": "assets/images/series1_thumb.jpg",
+        "duration": "12:04",
+        "uploader": "كرتون نتورك العربية",
+        "views": "1.8M",
+        "upload_date": "قبل 18 أسابيع"
+      },
+      {
+        "id": "gumball_s1_ep19",
+        "title": "The Wonderfully Weird World of Gumball -",
+        "video_path": "assets/video/sseries/The Wonderfully Weird World of Gumball - Season 1/The Wonderfully Weird World of Gumball - S01E19.mp4",
+        "thumbnail_path": "assets/images/series1_thumb.jpg",
+        "duration": "12:05",
+        "uploader": "كرتون نتورك العربية",
+        "views": "1.7M",
+        "upload_date": "قبل 19 أسابيع"
+      },
+      {
+        "id": "gumball_s1_ep20",
+        "title": "The Wonderfully Weird World of Gumball -",
+        "video_path": "assets/video/sseries/The Wonderfully Weird World of Gumball - Season 1/The Wonderfully Weird World of Gumball - S01E20 - (End).mp4",
+        "thumbnail_path": "assets/images/series1_thumb.jpg",
+        "duration": "12:04",
+        "uploader": "كرتون نتورك العربية",
+        "views": "2.1M",
+        "upload_date": "قبل 20 أسابيع"
+      }
+    ]
+  },
+  {
+    "id": "spies_s1",
+    "title": "الجاسوسات - الموسم 1",
+    "thumbnail_path": "assets/images/series1_thumb.jpg",
+    "episodes": [
+      {
+        "id": "spies_s1_ep1",
+        "title": "1",
+        "video_path": "assets/video/sseries/الجاسوسات الموسم 1/1.mkv",
+        "thumbnail_path": "assets/images/series1_thumb.jpg",
+        "duration": "22:00",
+        "uploader": "قناة الجاسوسات",
+        "views": "940K",
+        "upload_date": "قبل أسبوع"
+      },
+      {
+        "id": "spies_s1_ep2",
+        "title": "10",
+        "video_path": "assets/video/sseries/الجاسوسات الموسم 1/10.mp4",
+        "thumbnail_path": "assets/images/series1_thumb.jpg",
+        "duration": "21:20",
+        "uploader": "قناة الجاسوسات",
+        "views": "930K",
+        "upload_date": "قبل 2 أسابيع"
+      },
+      {
+        "id": "spies_s1_ep3",
+        "title": "11",
+        "video_path": "assets/video/sseries/الجاسوسات الموسم 1/11.mp4",
+        "thumbnail_path": "assets/images/series1_thumb.jpg",
+        "duration": "21:12",
+        "uploader": "قناة الجاسوسات",
+        "views": "920K",
+        "upload_date": "قبل 3 أسابيع"
+      },
+      {
+        "id": "spies_s1_ep4",
+        "title": "12",
+        "video_path": "assets/video/sseries/الجاسوسات الموسم 1/12.mp4",
+        "thumbnail_path": "assets/images/series1_thumb.jpg",
+        "duration": "18:24",
+        "uploader": "قناة الجاسوسات",
+        "views": "910K",
+        "upload_date": "قبل 4 أسابيع"
+      },
+      {
+        "id": "spies_s1_ep5",
+        "title": "13",
+        "video_path": "assets/video/sseries/الجاسوسات الموسم 1/13.mp4",
+        "thumbnail_path": "assets/images/series1_thumb.jpg",
+        "duration": "17:17",
+        "uploader": "قناة الجاسوسات",
+        "views": "950K",
+        "upload_date": "قبل 5 أسابيع"
+      },
+      {
+        "id": "spies_s1_ep6",
+        "title": "14",
+        "video_path": "assets/video/sseries/الجاسوسات الموسم 1/14.mp4",
+        "thumbnail_path": "assets/images/series1_thumb.jpg",
+        "duration": "20:14",
+        "uploader": "قناة الجاسوسات",
+        "views": "940K",
+        "upload_date": "قبل 6 أسابيع"
+      },
+      {
+        "id": "spies_s1_ep7",
+        "title": "15",
+        "video_path": "assets/video/sseries/الجاسوسات الموسم 1/15.mp4",
+        "thumbnail_path": "assets/images/series1_thumb.jpg",
+        "duration": "20:56",
+        "uploader": "قناة الجاسوسات",
+        "views": "930K",
+        "upload_date": "قبل 7 أسابيع"
+      },
+      {
+        "id": "spies_s1_ep8",
+        "title": "16",
+        "video_path": "assets/video/sseries/الجاسوسات الموسم 1/16.mp4",
+        "thumbnail_path": "assets/images/series1_thumb.jpg",
+        "duration": "16:42",
+        "uploader": "قناة الجاسوسات",
+        "views": "920K",
+        "upload_date": "قبل 8 أسابيع"
+      },
+      {
+        "id": "spies_s1_ep9",
+        "title": "17",
+        "video_path": "assets/video/sseries/الجاسوسات الموسم 1/17.mp4",
+        "thumbnail_path": "assets/images/series1_thumb.jpg",
+        "duration": "18:01",
+        "uploader": "قناة الجاسوسات",
+        "views": "910K",
+        "upload_date": "قبل 9 أسابيع"
+      },
+      {
+        "id": "spies_s1_ep10",
+        "title": "18",
+        "video_path": "assets/video/sseries/الجاسوسات الموسم 1/18.mp4",
+        "thumbnail_path": "assets/images/series1_thumb.jpg",
+        "duration": "16:56",
+        "uploader": "قناة الجاسوسات",
+        "views": "950K",
+        "upload_date": "قبل 10 أسابيع"
+      },
+      {
+        "id": "spies_s1_ep11",
+        "title": "19",
+        "video_path": "assets/video/sseries/الجاسوسات الموسم 1/19.mp4",
+        "thumbnail_path": "assets/images/series1_thumb.jpg",
+        "duration": "19:43",
+        "uploader": "قناة الجاسوسات",
+        "views": "940K",
+        "upload_date": "قبل 11 أسابيع"
+      },
+      {
+        "id": "spies_s1_ep12",
+        "title": "2",
+        "video_path": "assets/video/sseries/الجاسوسات الموسم 1/2.mp4",
+        "thumbnail_path": "assets/images/series1_thumb.jpg",
+        "duration": "20:22",
+        "uploader": "قناة الجاسوسات",
+        "views": "930K",
+        "upload_date": "قبل 12 أسابيع"
+      },
+      {
+        "id": "spies_s1_ep13",
+        "title": "20",
+        "video_path": "assets/video/sseries/الجاسوسات الموسم 1/20.mp4",
+        "thumbnail_path": "assets/images/series1_thumb.jpg",
+        "duration": "19:51",
+        "uploader": "قناة الجاسوسات",
+        "views": "920K",
+        "upload_date": "قبل 13 أسابيع"
+      },
+      {
+        "id": "spies_s1_ep14",
+        "title": "21",
+        "video_path": "assets/video/sseries/الجاسوسات الموسم 1/21.mp4",
+        "thumbnail_path": "assets/images/series1_thumb.jpg",
+        "duration": "21:20",
+        "uploader": "قناة الجاسوسات",
+        "views": "910K",
+        "upload_date": "قبل 14 أسابيع"
+      },
+      {
+        "id": "spies_s1_ep15",
+        "title": "23",
+        "video_path": "assets/video/sseries/الجاسوسات الموسم 1/23.mp4",
+        "thumbnail_path": "assets/images/series1_thumb.jpg",
+        "duration": "21:20",
+        "uploader": "قناة الجاسوسات",
+        "views": "950K",
+        "upload_date": "قبل 15 أسابيع"
+      },
+      {
+        "id": "spies_s1_ep16",
+        "title": "24",
+        "video_path": "assets/video/sseries/الجاسوسات الموسم 1/24.mp4",
+        "thumbnail_path": "assets/images/series1_thumb.jpg",
+        "duration": "21:20",
+        "uploader": "قناة الجاسوسات",
+        "views": "940K",
+        "upload_date": "قبل 16 أسابيع"
+      },
+      {
+        "id": "spies_s1_ep17",
+        "title": "25",
+        "video_path": "assets/video/sseries/الجاسوسات الموسم 1/25.mp4",
+        "thumbnail_path": "assets/images/series1_thumb.jpg",
+        "duration": "21:21",
+        "uploader": "قناة الجاسوسات",
+        "views": "930K",
+        "upload_date": "قبل 17 أسابيع"
+      },
+      {
+        "id": "spies_s1_ep18",
+        "title": "26 الاخيره",
+        "video_path": "assets/video/sseries/الجاسوسات الموسم 1/26 الاخيره.mp4",
+        "thumbnail_path": "assets/images/series1_thumb.jpg",
+        "duration": "21:21",
+        "uploader": "قناة الجاسوسات",
+        "views": "920K",
+        "upload_date": "قبل 18 أسابيع"
+      },
+      {
+        "id": "spies_s1_ep19",
+        "title": "3",
+        "video_path": "assets/video/sseries/الجاسوسات الموسم 1/3.mp4",
+        "thumbnail_path": "assets/images/series1_thumb.jpg",
+        "duration": "18:28",
+        "uploader": "قناة الجاسوسات",
+        "views": "910K",
+        "upload_date": "قبل 19 أسابيع"
+      },
+      {
+        "id": "spies_s1_ep20",
+        "title": "4",
+        "video_path": "assets/video/sseries/الجاسوسات الموسم 1/4.mp4",
+        "thumbnail_path": "assets/images/series1_thumb.jpg",
+        "duration": "19:01",
+        "uploader": "قناة الجاسوسات",
+        "views": "950K",
+        "upload_date": "قبل 20 أسابيع"
+      },
+      {
+        "id": "spies_s1_ep21",
+        "title": "5",
+        "video_path": "assets/video/sseries/الجاسوسات الموسم 1/5.mp4",
+        "thumbnail_path": "assets/images/series1_thumb.jpg",
+        "duration": "20:08",
+        "uploader": "قناة الجاسوسات",
+        "views": "940K",
+        "upload_date": "قبل 21 أسابيع"
+      },
+      {
+        "id": "spies_s1_ep22",
+        "title": "6",
+        "video_path": "assets/video/sseries/الجاسوسات الموسم 1/6.mp4",
+        "thumbnail_path": "assets/images/series1_thumb.jpg",
+        "duration": "19:21",
+        "uploader": "قناة الجاسوسات",
+        "views": "930K",
+        "upload_date": "قبل 22 أسابيع"
+      },
+      {
+        "id": "spies_s1_ep23",
+        "title": "7",
+        "video_path": "assets/video/sseries/الجاسوسات الموسم 1/7.mp4",
+        "thumbnail_path": "assets/images/series1_thumb.jpg",
+        "duration": "20:49",
+        "uploader": "قناة الجاسوسات",
+        "views": "920K",
+        "upload_date": "قبل 23 أسابيع"
+      },
+      {
+        "id": "spies_s1_ep24",
+        "title": "9",
+        "video_path": "assets/video/sseries/الجاسوسات الموسم 1/9.mp4",
+        "thumbnail_path": "assets/images/series1_thumb.jpg",
+        "duration": "21:02",
+        "uploader": "قناة الجاسوسات",
+        "views": "910K",
+        "upload_date": "قبل 24 أسابيع"
+      }
+    ]
+  },
+  {
+    "id": "spies_s2",
+    "title": "الجاسوسات - الموسم 2",
+    "thumbnail_path": "assets/images/series1_thumb.jpg",
+    "episodes": [
+      {
+        "id": "spies_s2_ep1",
+        "title": "1",
+        "video_path": "assets/video/sseries/الجاسوسات الموسم 2/1.mp4",
+        "thumbnail_path": "assets/images/series1_thumb.jpg",
+        "duration": "21:02",
+        "uploader": "قناة الجاسوسات",
+        "views": "1.0M",
+        "upload_date": "قبل أسبوع"
+      },
+      {
+        "id": "spies_s2_ep2",
+        "title": "10",
+        "video_path": "assets/video/sseries/الجاسوسات الموسم 2/10.mp4",
+        "thumbnail_path": "assets/images/series1_thumb.jpg",
+        "duration": "22:04",
+        "uploader": "قناة الجاسوسات",
+        "views": "0.9M",
+        "upload_date": "قبل 2 أسابيع"
+      },
+      {
+        "id": "spies_s2_ep3",
+        "title": "11",
+        "video_path": "assets/video/sseries/الجاسوسات الموسم 2/11.mp4",
+        "thumbnail_path": "assets/images/series1_thumb.jpg",
+        "duration": "22:05",
+        "uploader": "قناة الجاسوسات",
+        "views": "0.8M",
+        "upload_date": "قبل 3 أسابيع"
+      },
+      {
+        "id": "spies_s2_ep4",
+        "title": "12",
+        "video_path": "assets/video/sseries/الجاسوسات الموسم 2/12.mp4",
+        "thumbnail_path": "assets/images/series1_thumb.jpg",
+        "duration": "22:00",
+        "uploader": "قناة الجاسوسات",
+        "views": "0.7M",
+        "upload_date": "قبل 4 أسابيع"
+      },
+      {
+        "id": "spies_s2_ep5",
+        "title": "13",
+        "video_path": "assets/video/sseries/الجاسوسات الموسم 2/13.mp4",
+        "thumbnail_path": "assets/images/series1_thumb.jpg",
+        "duration": "22:04",
+        "uploader": "قناة الجاسوسات",
+        "views": "1.1M",
+        "upload_date": "قبل 5 أسابيع"
+      },
+      {
+        "id": "spies_s2_ep6",
+        "title": "14",
+        "video_path": "assets/video/sseries/الجاسوسات الموسم 2/14.mp4",
+        "thumbnail_path": "assets/images/series1_thumb.jpg",
+        "duration": "22:02",
+        "uploader": "قناة الجاسوسات",
+        "views": "1.0M",
+        "upload_date": "قبل 6 أسابيع"
+      },
+      {
+        "id": "spies_s2_ep7",
+        "title": "15",
+        "video_path": "assets/video/sseries/الجاسوسات الموسم 2/15.mp4",
+        "thumbnail_path": "assets/images/series1_thumb.jpg",
+        "duration": "22:02",
+        "uploader": "قناة الجاسوسات",
+        "views": "0.9M",
+        "upload_date": "قبل 7 أسابيع"
+      },
+      {
+        "id": "spies_s2_ep8",
+        "title": "16",
+        "video_path": "assets/video/sseries/الجاسوسات الموسم 2/16.mp4",
+        "thumbnail_path": "assets/images/series1_thumb.jpg",
+        "duration": "22:05",
+        "uploader": "قناة الجاسوسات",
+        "views": "0.8M",
+        "upload_date": "قبل 8 أسابيع"
+      },
+      {
+        "id": "spies_s2_ep9",
+        "title": "17",
+        "video_path": "assets/video/sseries/الجاسوسات الموسم 2/17.mp4",
+        "thumbnail_path": "assets/images/series1_thumb.jpg",
+        "duration": "22:03",
+        "uploader": "قناة الجاسوسات",
+        "views": "0.7M",
+        "upload_date": "قبل 9 أسابيع"
+      },
+      {
+        "id": "spies_s2_ep10",
+        "title": "18",
+        "video_path": "assets/video/sseries/الجاسوسات الموسم 2/18.mp4",
+        "thumbnail_path": "assets/images/series1_thumb.jpg",
+        "duration": "22:05",
+        "uploader": "قناة الجاسوسات",
+        "views": "1.1M",
+        "upload_date": "قبل 10 أسابيع"
+      },
+      {
+        "id": "spies_s2_ep11",
+        "title": "19",
+        "video_path": "assets/video/sseries/الجاسوسات الموسم 2/19.mp4",
+        "thumbnail_path": "assets/images/series1_thumb.jpg",
+        "duration": "22:04",
+        "uploader": "قناة الجاسوسات",
+        "views": "1.0M",
+        "upload_date": "قبل 11 أسابيع"
+      },
+      {
+        "id": "spies_s2_ep12",
+        "title": "2",
+        "video_path": "assets/video/sseries/الجاسوسات الموسم 2/2.mp4",
+        "thumbnail_path": "assets/images/series1_thumb.jpg",
+        "duration": "22:05",
+        "uploader": "قناة الجاسوسات",
+        "views": "0.9M",
+        "upload_date": "قبل 12 أسابيع"
+      },
+      {
+        "id": "spies_s2_ep13",
+        "title": "20",
+        "video_path": "assets/video/sseries/الجاسوسات الموسم 2/20.mp4",
+        "thumbnail_path": "assets/images/series1_thumb.jpg",
+        "duration": "21:53",
+        "uploader": "قناة الجاسوسات",
+        "views": "0.8M",
+        "upload_date": "قبل 13 أسابيع"
+      },
+      {
+        "id": "spies_s2_ep14",
+        "title": "22",
+        "video_path": "assets/video/sseries/الجاسوسات الموسم 2/22.mp4",
+        "thumbnail_path": "assets/images/series1_thumb.jpg",
+        "duration": "22:05",
+        "uploader": "قناة الجاسوسات",
+        "views": "0.7M",
+        "upload_date": "قبل 14 أسابيع"
+      },
+      {
+        "id": "spies_s2_ep15",
+        "title": "23",
+        "video_path": "assets/video/sseries/الجاسوسات الموسم 2/23.mp4",
+        "thumbnail_path": "assets/images/series1_thumb.jpg",
+        "duration": "22:00",
+        "uploader": "قناة الجاسوسات",
+        "views": "1.1M",
+        "upload_date": "قبل 15 أسابيع"
+      },
+      {
+        "id": "spies_s2_ep16",
+        "title": "24",
+        "video_path": "assets/video/sseries/الجاسوسات الموسم 2/24.mp4",
+        "thumbnail_path": "assets/images/series1_thumb.jpg",
+        "duration": "22:05",
+        "uploader": "قناة الجاسوسات",
+        "views": "1.0M",
+        "upload_date": "قبل 16 أسابيع"
+      },
+      {
+        "id": "spies_s2_ep17",
+        "title": "25",
+        "video_path": "assets/video/sseries/الجاسوسات الموسم 2/25.mp4",
+        "thumbnail_path": "assets/images/series1_thumb.jpg",
+        "duration": "22:05",
+        "uploader": "قناة الجاسوسات",
+        "views": "0.9M",
+        "upload_date": "قبل 17 أسابيع"
+      },
+      {
+        "id": "spies_s2_ep18",
+        "title": "26 الأخيرة",
+        "video_path": "assets/video/sseries/الجاسوسات الموسم 2/26 الأخيرة.mp4",
+        "thumbnail_path": "assets/images/series1_thumb.jpg",
+        "duration": "22:05",
+        "uploader": "قناة الجاسوسات",
+        "views": "0.8M",
+        "upload_date": "قبل 18 أسابيع"
+      },
+      {
+        "id": "spies_s2_ep19",
+        "title": "3",
+        "video_path": "assets/video/sseries/الجاسوسات الموسم 2/3.mp4",
+        "thumbnail_path": "assets/images/series1_thumb.jpg",
+        "duration": "22:02",
+        "uploader": "قناة الجاسوسات",
+        "views": "0.7M",
+        "upload_date": "قبل 19 أسابيع"
+      },
+      {
+        "id": "spies_s2_ep20",
+        "title": "4",
+        "video_path": "assets/video/sseries/الجاسوسات الموسم 2/4.mp4",
+        "thumbnail_path": "assets/images/series1_thumb.jpg",
+        "duration": "22:05",
+        "uploader": "قناة الجاسوسات",
+        "views": "1.1M",
+        "upload_date": "قبل 20 أسابيع"
+      },
+      {
+        "id": "spies_s2_ep21",
+        "title": "5",
+        "video_path": "assets/video/sseries/الجاسوسات الموسم 2/5.mp4",
+        "thumbnail_path": "assets/images/series1_thumb.jpg",
+        "duration": "22:05",
+        "uploader": "قناة الجاسوسات",
+        "views": "1.0M",
+        "upload_date": "قبل 21 أسابيع"
+      },
+      {
+        "id": "spies_s2_ep22",
+        "title": "6",
+        "video_path": "assets/video/sseries/الجاسوسات الموسم 2/6.mp4",
+        "thumbnail_path": "assets/images/series1_thumb.jpg",
+        "duration": "22:06",
+        "uploader": "قناة الجاسوسات",
+        "views": "0.9M",
+        "upload_date": "قبل 22 أسابيع"
+      },
+      {
+        "id": "spies_s2_ep23",
+        "title": "7",
+        "video_path": "assets/video/sseries/الجاسوسات الموسم 2/7.mp4",
+        "thumbnail_path": "assets/images/series1_thumb.jpg",
+        "duration": "22:05",
+        "uploader": "قناة الجاسوسات",
+        "views": "0.8M",
+        "upload_date": "قبل 23 أسابيع"
+      },
+      {
+        "id": "spies_s2_ep24",
+        "title": "8",
+        "video_path": "assets/video/sseries/الجاسوسات الموسم 2/8.mp4",
+        "thumbnail_path": "assets/images/series1_thumb.jpg",
+        "duration": "22:04",
+        "uploader": "قناة الجاسوسات",
+        "views": "0.7M",
+        "upload_date": "قبل 24 أسابيع"
+      },
+      {
+        "id": "spies_s2_ep25",
+        "title": "9",
+        "video_path": "assets/video/sseries/الجاسوسات الموسم 2/9.mp4",
+        "thumbnail_path": "assets/images/series1_thumb.jpg",
+        "duration": "22:05",
+        "uploader": "قناة الجاسوسات",
+        "views": "1.1M",
+        "upload_date": "قبل 25 أسابيع"
+      }
+    ]
+  },
+  {
+    "id": "shaun_sheep",
+    "title": "الخروف شون",
+    "thumbnail_path": "assets/images/series1_thumb.jpg",
+    "episodes": [
+      {
+        "id": "shaun_sheep_ep1",
+        "title": "09.Steeplechase - Championsheeps Games - Shaun the Sheep",
+        "video_path": "assets/video/sseries/الخروف شون/09.Steeplechase - Championsheeps Games - Shaun the Sheep.mp4",
+        "thumbnail_path": "assets/images/series1_thumb.jpg",
+        "duration": "1:08",
+        "uploader": "مغامرات شون شيب",
+        "views": "640K",
+        "upload_date": "قبل أسبوع"
+      },
+      {
+        "id": "shaun_sheep_ep2",
+        "title": "09.ألعاب العقل-قوة الأقناع",
+        "video_path": "assets/video/sseries/الخروف شون/09.ألعاب العقل-قوة الأقناع.mp4",
+        "thumbnail_path": "assets/images/series1_thumb.jpg",
+        "duration": "22:10",
+        "uploader": "مغامرات شون شيب",
+        "views": "630K",
+        "upload_date": "قبل 2 أسابيع"
+      },
+      {
+        "id": "shaun_sheep_ep3",
+        "title": "10.Trampoline - Championsheeps Games - Shaun the Sheep",
+        "video_path": "assets/video/sseries/الخروف شون/10.Trampoline - Championsheeps Games - Shaun the Sheep.mp4",
+        "thumbnail_path": "assets/images/series1_thumb.jpg",
+        "duration": "1:08",
+        "uploader": "مغامرات شون شيب",
+        "views": "620K",
+        "upload_date": "قبل 3 أسابيع"
+      },
+      {
+        "id": "shaun_sheep_ep4",
+        "title": "11.Ping Pong - Championsheeps Games - Shaun the Sheep",
+        "video_path": "assets/video/sseries/الخروف شون/11.Ping Pong - Championsheeps Games - Shaun the Sheep.mp4",
+        "thumbnail_path": "assets/images/series1_thumb.jpg",
+        "duration": "1:08",
+        "uploader": "مغامرات شون شيب",
+        "views": "610K",
+        "upload_date": "قبل 4 أسابيع"
+      },
+      {
+        "id": "shaun_sheep_ep5",
+        "title": "11.وثائقي - ألعاب العقل- ثقوا بي 1",
+        "video_path": "assets/video/sseries/الخروف شون/11.وثائقي - ألعاب العقل- ثقوا بي 1.mp4",
+        "thumbnail_path": "assets/images/series1_thumb.jpg",
+        "duration": "10:03",
+        "uploader": "مغامرات شون شيب",
+        "views": "650K",
+        "upload_date": "قبل 5 أسابيع"
+      },
+      {
+        "id": "shaun_sheep_ep6",
+        "title": "12.Hammer - Championsheeps Games - Shaun the Sheep",
+        "video_path": "assets/video/sseries/الخروف شون/12.Hammer - Championsheeps Games - Shaun the Sheep.mp4",
+        "thumbnail_path": "assets/images/series1_thumb.jpg",
+        "duration": "1:08",
+        "uploader": "مغامرات شون شيب",
+        "views": "640K",
+        "upload_date": "قبل 6 أسابيع"
+      },
+      {
+        "id": "shaun_sheep_ep7",
+        "title": "13.Ribbon - Championsheeps Games - Shaun the Sheep",
+        "video_path": "assets/video/sseries/الخروف شون/13.Ribbon - Championsheeps Games - Shaun the Sheep.mp4",
+        "thumbnail_path": "assets/images/series1_thumb.jpg",
+        "duration": "1:08",
+        "uploader": "مغامرات شون شيب",
+        "views": "630K",
+        "upload_date": "قبل 7 أسابيع"
+      },
+      {
+        "id": "shaun_sheep_ep8",
+        "title": "14.Judo - Championsheeps Games - Shaun the Sheep",
+        "video_path": "assets/video/sseries/الخروف شون/14.Judo - Championsheeps Games - Shaun the Sheep.mp4",
+        "thumbnail_path": "assets/images/series1_thumb.jpg",
+        "duration": "1:08",
+        "uploader": "مغامرات شون شيب",
+        "views": "620K",
+        "upload_date": "قبل 8 أسابيع"
+      },
+      {
+        "id": "shaun_sheep_ep9",
+        "title": "15.Weightlifting - Championsheeps Games - Shaun the Sheep",
+        "video_path": "assets/video/sseries/الخروف شون/15.Weightlifting - Championsheeps Games - Shaun the Sheep.mp4",
+        "thumbnail_path": "assets/images/series1_thumb.jpg",
+        "duration": "1:08",
+        "uploader": "مغامرات شون شيب",
+        "views": "610K",
+        "upload_date": "قبل 9 أسابيع"
+      },
+      {
+        "id": "shaun_sheep_ep10",
+        "title": "17.Gymnastics - Championsheeps Games - Shaun the Sheep",
+        "video_path": "assets/video/sseries/الخروف شون/17.Gymnastics - Championsheeps Games - Shaun the Sheep.mp4",
+        "thumbnail_path": "assets/images/series1_thumb.jpg",
+        "duration": "1:08",
+        "uploader": "مغامرات شون شيب",
+        "views": "650K",
+        "upload_date": "قبل 10 أسابيع"
+      }
+    ]
+  },
+  {
+    "id": "spongebob_s11",
+    "title": "سبونج بوب سكوير بانتس - الموسم 11",
+    "thumbnail_path": "assets/images/series1_thumb.jpg",
+    "episodes": [
+      {
+        "id": "spongebob_s11_ep1",
+        "title": "1",
+        "video_path": "assets/video/sseries/سبونج بوب سكوير بانتس - الموسم 11/1.mp4",
+        "thumbnail_path": "assets/images/series1_thumb.jpg",
+        "duration": "22:27",
+        "uploader": "نيكولوديون العربية",
+        "views": "3.1M",
+        "upload_date": "قبل أسبوع"
+      },
+      {
+        "id": "spongebob_s11_ep2",
+        "title": "11",
+        "video_path": "assets/video/sseries/سبونج بوب سكوير بانتس - الموسم 11/11.mp4",
+        "thumbnail_path": "assets/images/series1_thumb.jpg",
+        "duration": "22:31",
+        "uploader": "نيكولوديون العربية",
+        "views": "3.0M",
+        "upload_date": "قبل 2 أسابيع"
+      },
+      {
+        "id": "spongebob_s11_ep3",
+        "title": "12",
+        "video_path": "assets/video/sseries/سبونج بوب سكوير بانتس - الموسم 11/12.mp4",
+        "thumbnail_path": "assets/images/series1_thumb.jpg",
+        "duration": "22:23",
+        "uploader": "نيكولوديون العربية",
+        "views": "2.9M",
+        "upload_date": "قبل 3 أسابيع"
+      },
+      {
+        "id": "spongebob_s11_ep4",
+        "title": "14",
+        "video_path": "assets/video/sseries/سبونج بوب سكوير بانتس - الموسم 11/14.mp4",
+        "thumbnail_path": "assets/images/series1_thumb.jpg",
+        "duration": "22:18",
+        "uploader": "نيكولوديون العربية",
+        "views": "2.8M",
+        "upload_date": "قبل 4 أسابيع"
+      },
+      {
+        "id": "spongebob_s11_ep5",
+        "title": "15",
+        "video_path": "assets/video/sseries/سبونج بوب سكوير بانتس - الموسم 11/15.mp4",
+        "thumbnail_path": "assets/images/series1_thumb.jpg",
+        "duration": "22:26",
+        "uploader": "نيكولوديون العربية",
+        "views": "3.2M",
+        "upload_date": "قبل 5 أسابيع"
+      },
+      {
+        "id": "spongebob_s11_ep6",
+        "title": "16",
+        "video_path": "assets/video/sseries/سبونج بوب سكوير بانتس - الموسم 11/16.mp4",
+        "thumbnail_path": "assets/images/series1_thumb.jpg",
+        "duration": "22:30",
+        "uploader": "نيكولوديون العربية",
+        "views": "3.1M",
+        "upload_date": "قبل 6 أسابيع"
+      },
+      {
+        "id": "spongebob_s11_ep7",
+        "title": "17",
+        "video_path": "assets/video/sseries/سبونج بوب سكوير بانتس - الموسم 11/17.mp4",
+        "thumbnail_path": "assets/images/series1_thumb.jpg",
+        "duration": "22:17",
+        "uploader": "نيكولوديون العربية",
+        "views": "3.0M",
+        "upload_date": "قبل 7 أسابيع"
+      },
+      {
+        "id": "spongebob_s11_ep8",
+        "title": "18",
+        "video_path": "assets/video/sseries/سبونج بوب سكوير بانتس - الموسم 11/18.mp4",
+        "thumbnail_path": "assets/images/series1_thumb.jpg",
+        "duration": "22:03",
+        "uploader": "نيكولوديون العربية",
+        "views": "2.9M",
+        "upload_date": "قبل 8 أسابيع"
+      },
+      {
+        "id": "spongebob_s11_ep9",
+        "title": "19",
+        "video_path": "assets/video/sseries/سبونج بوب سكوير بانتس - الموسم 11/19.mp4",
+        "thumbnail_path": "assets/images/series1_thumb.jpg",
+        "duration": "22:27",
+        "uploader": "نيكولوديون العربية",
+        "views": "2.8M",
+        "upload_date": "قبل 9 أسابيع"
+      },
+      {
+        "id": "spongebob_s11_ep10",
+        "title": "2",
+        "video_path": "assets/video/sseries/سبونج بوب سكوير بانتس - الموسم 11/2.mp4",
+        "thumbnail_path": "assets/images/series1_thumb.jpg",
+        "duration": "22:11",
+        "uploader": "نيكولوديون العربية",
+        "views": "3.2M",
+        "upload_date": "قبل 10 أسابيع"
+      },
+      {
+        "id": "spongebob_s11_ep11",
+        "title": "20",
+        "video_path": "assets/video/sseries/سبونج بوب سكوير بانتس - الموسم 11/20.mp4",
+        "thumbnail_path": "assets/images/series1_thumb.jpg",
+        "duration": "22:31",
+        "uploader": "نيكولوديون العربية",
+        "views": "3.1M",
+        "upload_date": "قبل 11 أسابيع"
+      },
+      {
+        "id": "spongebob_s11_ep12",
+        "title": "21 (الاخيرة)",
+        "video_path": "assets/video/sseries/سبونج بوب سكوير بانتس - الموسم 11/21 (الاخيرة).mp4",
+        "thumbnail_path": "assets/images/series1_thumb.jpg",
+        "duration": "22:21",
+        "uploader": "نيكولوديون العربية",
+        "views": "3.0M",
+        "upload_date": "قبل 12 أسابيع"
+      },
+      {
+        "id": "spongebob_s11_ep13",
+        "title": "3",
+        "video_path": "assets/video/sseries/سبونج بوب سكوير بانتس - الموسم 11/3.mp4",
+        "thumbnail_path": "assets/images/series1_thumb.jpg",
+        "duration": "22:26",
+        "uploader": "نيكولوديون العربية",
+        "views": "2.9M",
+        "upload_date": "قبل 13 أسابيع"
+      }
+    ]
+  },
+  {
+    "id": "super_monsters_s1",
+    "title": "وحوش خارقة - الموسم 1",
+    "thumbnail_path": "assets/images/series1_thumb.jpg",
+    "episodes": [
+      {
+        "id": "super_monsters_s1_ep1",
+        "title": "Super Monsters Monster Pets -",
+        "video_path": "assets/video/sseries/وحوش خارقة الموسم 1/Super Monsters Monster Pets - S01E01.mkv",
+        "thumbnail_path": "assets/images/series1_thumb.jpg",
+        "duration": "22:00",
+        "uploader": "وحوش خارقة للأطفال",
+        "views": "290K",
+        "upload_date": "قبل أسبوع"
+      },
+      {
+        "id": "super_monsters_s1_ep2",
+        "title": "Super Monsters Monster Pets -",
+        "video_path": "assets/video/sseries/وحوش خارقة الموسم 1/Super Monsters Monster Pets - S01E02.mkv",
+        "thumbnail_path": "assets/images/series1_thumb.jpg",
+        "duration": "22:00",
+        "uploader": "وحوش خارقة للأطفال",
+        "views": "280K",
+        "upload_date": "قبل 2 أسابيع"
+      },
+      {
+        "id": "super_monsters_s1_ep3",
+        "title": "Super Monsters Monster Pets -",
+        "video_path": "assets/video/sseries/وحوش خارقة الموسم 1/Super Monsters Monster Pets - S01E03.mkv",
+        "thumbnail_path": "assets/images/series1_thumb.jpg",
+        "duration": "22:00",
+        "uploader": "وحوش خارقة للأطفال",
+        "views": "270K",
+        "upload_date": "قبل 3 أسابيع"
+      },
+      {
+        "id": "super_monsters_s1_ep4",
+        "title": "Super Monsters Monster Pets -",
+        "video_path": "assets/video/sseries/وحوش خارقة الموسم 1/Super Monsters Monster Pets - S01E04.mkv",
+        "thumbnail_path": "assets/images/series1_thumb.jpg",
+        "duration": "22:00",
+        "uploader": "وحوش خارقة للأطفال",
+        "views": "260K",
+        "upload_date": "قبل 4 أسابيع"
+      },
+      {
+        "id": "super_monsters_s1_ep5",
+        "title": "Super Monsters Monster Pets - - End",
+        "video_path": "assets/video/sseries/وحوش خارقة الموسم 1/Super Monsters Monster Pets - S01E05 - End.mkv",
+        "thumbnail_path": "assets/images/series1_thumb.jpg",
+        "duration": "22:00",
+        "uploader": "وحوش خارقة للأطفال",
+        "views": "300K",
+        "upload_date": "قبل 5 أسابيع"
       }
     ]
   }
