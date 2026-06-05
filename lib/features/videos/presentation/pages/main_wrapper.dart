@@ -7,7 +7,7 @@ import 'package:ww/features/videos/presentation/pages/library_page.dart';
 final navigationIndexProvider = StateProvider<int>((ref) => 0);
 
 class MainWrapper extends ConsumerWidget {
-  const MainWrapper({Key? key}) : super(key: key);
+  const MainWrapper({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

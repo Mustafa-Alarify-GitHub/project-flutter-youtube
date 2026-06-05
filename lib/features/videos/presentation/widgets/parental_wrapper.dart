@@ -7,7 +7,7 @@ import 'package:ww/features/videos/presentation/widgets/math_gate_dialog.dart';
 
 class ParentalWrapper extends ConsumerStatefulWidget {
   final Widget child;
-  const ParentalWrapper({Key? key, required this.child}) : super(key: key);
+  const ParentalWrapper({super.key, required this.child});
 
   @override
   ConsumerState<ParentalWrapper> createState() => _ParentalWrapperState();

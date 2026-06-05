@@ -6,7 +6,7 @@ import 'package:ww/features/videos/presentation/providers/video_provider.dart';
 import 'package:ww/features/videos/presentation/widgets/video_player_widget.dart';
 
 class ShortsPage extends ConsumerWidget {
-  const ShortsPage({Key? key}) : super(key: key);
+  const ShortsPage({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -73,7 +73,7 @@ class ShortsPage extends ConsumerWidget {
 class ShortVideoItem extends ConsumerWidget {
   final AssetEntity asset;
 
-  const ShortVideoItem({Key? key, required this.asset}) : super(key: key);
+  const ShortVideoItem({super.key, required this.asset});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

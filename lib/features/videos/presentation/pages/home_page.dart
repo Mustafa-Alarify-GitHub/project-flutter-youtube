@@ -11,7 +11,7 @@ final isSearchVisibleProvider = StateProvider<bool>((ref) => false);
 final albumSearchQueryProvider = StateProvider<String>((ref) => '');
 
 class HomePage extends ConsumerWidget {
-  const HomePage({Key? key}) : super(key: key);
+  const HomePage({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -186,7 +186,7 @@ class AlbumGridCard extends StatefulWidget {
   final AssetPathEntity album;
   final bool isDark;
 
-  const AlbumGridCard({Key? key, required this.album, required this.isDark}) : super(key: key);
+  const AlbumGridCard({super.key, required this.album, required this.isDark});
 
   @override
   State<AlbumGridCard> createState() => _AlbumGridCardState();

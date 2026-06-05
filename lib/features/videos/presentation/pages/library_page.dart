@@ -7,7 +7,7 @@ import 'package:ww/features/videos/presentation/pages/photo_viewer_page.dart';
 import 'package:ww/features/videos/presentation/pages/video_detail_page.dart';
 
 class LibraryPage extends ConsumerWidget {
-  const LibraryPage({Key? key}) : super(key: key);
+  const LibraryPage({super.key});
 
   String _formatDuration(int seconds) {
     final int minutes = seconds ~/ 60;

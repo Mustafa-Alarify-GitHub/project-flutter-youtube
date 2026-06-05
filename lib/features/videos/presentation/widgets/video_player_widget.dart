@@ -14,12 +14,12 @@ class YouTubeVideoPlayer extends ConsumerStatefulWidget {
   final Widget? overlay;
 
   const YouTubeVideoPlayer({
-    Key? key,
+    super.key,
     required this.videoId,
     required this.videoPath,
     this.isShort = false,
     this.overlay,
-  }) : super(key: key);
+  });
 
   @override
   ConsumerState<YouTubeVideoPlayer> createState() => _YouTubeVideoPlayerState();

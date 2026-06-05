@@ -10,11 +10,11 @@ class PhotoViewerPage extends ConsumerStatefulWidget {
   final String albumName;
 
   const PhotoViewerPage({
-    Key? key,
+    super.key,
     required this.assets,
     required this.initialIndex,
     required this.albumName,
-  }) : super(key: key);
+  });
 
   @override
   ConsumerState<PhotoViewerPage> createState() => _PhotoViewerPageState();

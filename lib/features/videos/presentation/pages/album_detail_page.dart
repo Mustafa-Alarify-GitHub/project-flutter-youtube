@@ -7,7 +7,7 @@ import 'package:ww/features/videos/presentation/pages/video_detail_page.dart';
 class AlbumDetailPage extends StatefulWidget {
   final AssetPathEntity album;
 
-  const AlbumDetailPage({Key? key, required this.album}) : super(key: key);
+  const AlbumDetailPage({super.key, required this.album});
 
   @override
   State<AlbumDetailPage> createState() => _AlbumDetailPageState();

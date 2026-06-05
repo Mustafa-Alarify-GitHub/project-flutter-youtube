@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 import 'dart:math';
 
 class MathGateDialog extends StatefulWidget {
-  const MathGateDialog({Key? key}) : super(key: key);
+  const MathGateDialog({super.key});
 
   static Future<bool> show(BuildContext context) async {
     final result = await showGeneralDialog<bool>(

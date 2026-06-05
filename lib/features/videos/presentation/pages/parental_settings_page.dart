@@ -4,7 +4,7 @@ import 'package:ww/features/videos/presentation/providers/parental_provider.dart
 import 'package:ww/features/videos/presentation/providers/video_provider.dart';
 
 class ParentalSettingsPage extends ConsumerWidget {
-  const ParentalSettingsPage({Key? key}) : super(key: key);
+  const ParentalSettingsPage({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -291,7 +291,7 @@ class ParentalSettingsPage extends ConsumerWidget {
 
 // Stateful tile to manage Shorts folder text input without rebuilding the entire page on every keypress
 class ShortsFolderSettingTile extends ConsumerStatefulWidget {
-  const ShortsFolderSettingTile({Key? key}) : super(key: key);
+  const ShortsFolderSettingTile({super.key});
 
   @override
   ConsumerState<ShortsFolderSettingTile> createState() => _ShortsFolderSettingTileState();

@@ -11,21 +11,23 @@ dependencies:
   flutter:
     sdk: flutter
   cupertino_icons: ^1.0.8
-  video_player: ^2.8.2
-  chewie: ^1.8.0
-  path_provider: ^2.1.2
-  permission_handler: ^11.3.1
-  flutter_riverpod: ^2.5.1
-  shared_preferences: ^2.5.5
-  intl: ^0.20.2
-  photo_manager: ^3.9.0
-  photo_manager_image_provider: ^2.2.0
+  
+  # تم إزالة علامة ^ وتخفيض الإصدارات لتتوافق مع Android SDK 34
+  video_player: 2.8.3
+  chewie: 1.8.0
+  path_provider: 2.1.2
+  permission_handler: 11.3.1
+  flutter_riverpod: 2.5.1
+  shared_preferences: 2.2.3
+  intl: 0.20.2
+  photo_manager: 2.8.1
+  photo_manager_image_provider: any
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^3.0.0
-  flutter_launcher_icons: ^0.13.1
+  flutter_lints: 3.0.0
+  flutter_launcher_icons: 0.13.1
 
 flutter:
   uses-material-design: true
@@ -35,15 +37,6 @@ flutter:
     - assets/series.json
     - assets/images/
     - assets/icon.png
-    - "assets/video/sseries/(2014- ) توم المتكلم والأصدقاء/"
-    - "assets/video/sseries/Ben 10/"
-    - "assets/video/sseries/Sonic X/"
-    - "assets/video/sseries/The Wonderfully Weird World of Gumball - Season 1/"
-    - "assets/video/sseries/الجاسوسات الموسم 1/"
-    - "assets/video/sseries/الجاسوسات الموسم 2/"
-    - "assets/video/sseries/الخروف شون/"
-    - "assets/video/sseries/سبونج بوب سكوير بانتس - الموسم 11/"
-    - "assets/video/sseries/وحوش خارقة الموسم 1/"
 
 flutter_launcher_icons:
   android: "launcher_icon"

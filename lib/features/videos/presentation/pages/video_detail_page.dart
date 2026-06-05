@@ -12,10 +12,10 @@ class VideoDetailPage extends ConsumerStatefulWidget {
   final List<AssetEntity> albumAssets;
 
   const VideoDetailPage({
-    Key? key,
+    super.key,
     required this.videoAsset,
     required this.albumAssets,
-  }) : super(key: key);
+  });
 
   @override
   ConsumerState<VideoDetailPage> createState() => _VideoDetailPageState();
