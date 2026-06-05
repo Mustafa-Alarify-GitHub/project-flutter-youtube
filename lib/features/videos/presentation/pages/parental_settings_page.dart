@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ww/features/videos/presentation/providers/parental_provider.dart';
+import 'package:ww/features/videos/presentation/providers/video_provider.dart';
 
 class ParentalSettingsPage extends ConsumerWidget {
   const ParentalSettingsPage({Key? key}) : super(key: key);
@@ -9,15 +10,18 @@ class ParentalSettingsPage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final state = ref.watch(parentalProvider);
     final notifier = ref.read(parentalProvider.notifier);
+    final allAlbumsAsync = ref.watch(allAlbumsProvider);
+    final hiddenAlbums = ref.watch(hiddenAlbumsProvider);
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('إعدادات الرقابة'),
+        title: const Text('إعدادات الرقابة للوالدين'),
         centerTitle: true,
       ),
       body: ListView(
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
         children: [
+          // Screen Time Management
           _buildSettingsCard(
             context,
             title: 'إدارة وقت الاستخدام',
@@ -40,6 +44,8 @@ class ParentalSettingsPage extends ConsumerWidget {
             ],
           ),
           const SizedBox(height: 16),
+
+          // Brightness & Volume
           _buildSettingsCard(
             context,
             title: 'التحكم في الوسائط',
@@ -64,6 +70,67 @@ class ParentalSettingsPage extends ConsumerWidget {
             ],
           ),
           const SizedBox(height: 16),
+
+          // New: Photo Gallery & Shorts Folder Management
+          _buildSettingsCard(
+            context,
+            title: 'إدارة ألبومات ومحتوى الصور',
+            icon: Icons.photo_library_rounded,
+            color: Colors.red,
+            children: [
+              const ShortsFolderSettingTile(),
+              const SizedBox(height: 16),
+              const Divider(),
+              const SizedBox(height: 8),
+              const Text(
+                'عرض/إخفاء ألبومات الصور',
+                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+              ),
+              const SizedBox(height: 4),
+              const Text(
+                'قم بإلغاء تحديد الألبومات التي لا تريد أن تظهر لطفلك في المعرض الرئيسية.',
+                style: TextStyle(fontSize: 12, color: Colors.grey),
+              ),
+              const SizedBox(height: 12),
+              allAlbumsAsync.when(
+                data: (albums) {
+                  if (albums.isEmpty) {
+                    return const Padding(
+                      padding: EdgeInsets.symmetric(vertical: 16.0),
+                      child: Text('لم يتم العثور على ألبومات صور على الجهاز.', style: TextStyle(color: Colors.grey)),
+                    );
+                  }
+                  return ListView.builder(
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                    itemCount: albums.length,
+                    itemBuilder: (context, index) {
+                      final album = albums[index];
+                      final isVisible = !hiddenAlbums.contains(album.id);
+                      return CheckboxListTile(
+                        title: Text(album.name),
+                        value: isVisible,
+                        activeColor: Colors.red,
+                        onChanged: (val) {
+                          ref.read(hiddenAlbumsProvider.notifier).toggleAlbumVisibility(album.id);
+                        },
+                      );
+                    },
+                  );
+                },
+                loading: () => const Center(
+                  child: Padding(
+                    padding: EdgeInsets.all(16.0),
+                    child: CircularProgressIndicator(color: Colors.red),
+                  ),
+                ),
+                error: (e, s) => Text('تعذر تحميل الألبومات: $e', style: const TextStyle(color: Colors.red)),
+              ),
+            ],
+          ),
+          const SizedBox(height: 16),
+
+          // Daily Statistics
           _buildSettingsCard(
             context,
             title: 'إحصائيات اليوم',
@@ -75,6 +142,8 @@ class ParentalSettingsPage extends ConsumerWidget {
             ],
           ),
           const SizedBox(height: 32),
+
+          // Reset Usage Button
           ElevatedButton(
             style: ElevatedButton.styleFrom(
               backgroundColor: Colors.red.withOpacity(0.1),
@@ -145,7 +214,10 @@ class ParentalSettingsPage extends ConsumerWidget {
           const Divider(height: 1),
           Padding(
             padding: const EdgeInsets.all(20),
-            child: Column(children: children),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: children,
+            ),
           ),
         ],
       ),
@@ -213,6 +285,76 @@ class ParentalSettingsPage extends ConsumerWidget {
           Text(value, style: const TextStyle(fontWeight: FontWeight.bold)),
         ],
       ),
+    );
+  }
+}
+
+// Stateful tile to manage Shorts folder text input without rebuilding the entire page on every keypress
+class ShortsFolderSettingTile extends ConsumerStatefulWidget {
+  const ShortsFolderSettingTile({Key? key}) : super(key: key);
+
+  @override
+  ConsumerState<ShortsFolderSettingTile> createState() => _ShortsFolderSettingTileState();
+}
+
+class _ShortsFolderSettingTileState extends ConsumerState<ShortsFolderSettingTile> {
+  late TextEditingController _controller;
+
+  @override
+  void initState() {
+    super.initState();
+    final initialName = ref.read(shortsFolderNameProvider);
+    _controller = TextEditingController(text: initialName);
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        const Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text('اسم مجلد فيديوهات الشورت', style: TextStyle(color: Colors.grey)),
+              SizedBox(height: 2),
+              Text('مثال: Shorts أو Reels', style: TextStyle(fontSize: 12, color: Colors.grey)),
+            ],
+          ),
+        ),
+        const SizedBox(width: 16),
+        SizedBox(
+          width: 150,
+          child: TextField(
+            controller: _controller,
+            textAlign: TextAlign.center,
+            decoration: const InputDecoration(
+              isDense: true,
+              contentPadding: EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+              border: OutlineInputBorder(),
+              focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.red)),
+            ),
+            onSubmitted: (value) {
+              final trimmed = value.trim();
+              if (trimmed.isNotEmpty) {
+                ref.read(shortsFolderNameProvider.notifier).updateName(trimmed);
+                ScaffoldMessenger.of(context).clearSnackBars();
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    content: Text('تم حفظ اسم مجلد الشورت: $trimmed', style: const TextStyle(fontWeight: FontWeight.bold)),
+                    backgroundColor: Colors.red,
+                  ),
+                );
+              }
+            },
+          ),
+        ),
+      ],
     );
   }
 }

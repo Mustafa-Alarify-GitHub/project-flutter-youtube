@@ -5,7 +5,7 @@ publish_to: 'none'
 version: 1.0.0+1
 
 environment:
-  sdk: ^3.11.4
+  sdk: ^3.10.0
 
 dependencies:
   flutter:
@@ -17,8 +17,9 @@ dependencies:
   permission_handler: ^11.3.1
   flutter_riverpod: ^2.5.1
   shared_preferences: ^2.5.5
-  get_thumbnail_video: ^0.7.3
   intl: ^0.20.2
+  photo_manager: ^3.9.0
+  photo_manager_image_provider: ^2.2.0
 
 dev_dependencies:
   flutter_test:
@@ -34,10 +35,15 @@ flutter:
     - assets/series.json
     - assets/images/
     - assets/icon.png
-    - assets/videos/series/
-    - assets/videos/series/spy/
-    - assets/videos/series/TheBeginningAftertheEnd/
-    - assets/videos/reels/
+    - "assets/video/sseries/(2014- ) توم المتكلم والأصدقاء/"
+    - "assets/video/sseries/Ben 10/"
+    - "assets/video/sseries/Sonic X/"
+    - "assets/video/sseries/The Wonderfully Weird World of Gumball - Season 1/"
+    - "assets/video/sseries/الجاسوسات الموسم 1/"
+    - "assets/video/sseries/الجاسوسات الموسم 2/"
+    - "assets/video/sseries/الخروف شون/"
+    - "assets/video/sseries/سبونج بوب سكوير بانتس - الموسم 11/"
+    - "assets/video/sseries/وحوش خارقة الموسم 1/"
 
 flutter_launcher_icons:
   android: "launcher_icon"

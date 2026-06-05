@@ -1,134 +1,231 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:ww/features/videos/presentation/providers/video_provider.dart';
-import 'package:ww/features/videos/domain/models/video_model.dart';
+import 'package:photo_manager/photo_manager.dart';
+import 'package:photo_manager_image_provider/photo_manager_image_provider.dart';
 import 'package:ww/features/videos/presentation/widgets/video_player_widget.dart';
-import 'package:ww/features/videos/presentation/pages/home_page.dart';
-import 'package:ww/features/videos/domain/models/series_model.dart';
+import 'package:ww/features/videos/presentation/pages/photo_viewer_page.dart';
+import 'package:ww/features/videos/presentation/providers/video_provider.dart';
 
-class VideoDetailPage extends ConsumerWidget {
-  final VideoModel video;
+class VideoDetailPage extends ConsumerStatefulWidget {
+  final AssetEntity videoAsset;
+  final List<AssetEntity> albumAssets;
 
-  const VideoDetailPage({Key? key, required this.video}) : super(key: key);
+  const VideoDetailPage({
+    Key? key,
+    required this.videoAsset,
+    required this.albumAssets,
+  }) : super(key: key);
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final isFav = ref.watch(favoritesProvider).contains(video.id);
-    final seriesAsync = ref.watch(seriesProvider);
+  ConsumerState<VideoDetailPage> createState() => _VideoDetailPageState();
+}
 
-    List<VideoModel> suggestedVideos = [];
-    seriesAsync.whenData((seriesList) {
-      SeriesModel? currentSeries;
-      for (var s in seriesList) {
-        if (s.episodes.any((v) => v.id == video.id)) {
-          currentSeries = s;
-          break;
-        }
-      }
+class _VideoDetailPageState extends ConsumerState<VideoDetailPage> {
+  late AssetEntity _currentAsset;
+  File? _videoFile;
+  bool _isLoading = true;
 
-      if (currentSeries != null) {
-        var related = currentSeries.episodes.where((v) => v.id != video.id).toList();
-        // Add ALL other related videos in this series
-        suggestedVideos.addAll(related);
-      }
-
-      var allOtherVideos = seriesList
-          .expand((s) => s.episodes)
-          .where((v) => v.id != video.id && !suggestedVideos.any((sv) => sv.id == v.id))
-          .toList();
-      
-      // Add the rest from what was recently added (reversing to simulate latest)
-      allOtherVideos = allOtherVideos.reversed.toList();
-      suggestedVideos.addAll(allOtherVideos.take(15 - suggestedVideos.length)); 
-    });
-
-    return Scaffold(
-      body: SafeArea(
-        child: Column(
-          children: [
-            AspectRatio(
-              aspectRatio: 16 / 9,
-              child: YouTubeVideoPlayer(videoId: video.id, videoPath: video.videoPath),
-            ),
-            Expanded(
-              child: ListView(
-                padding: const EdgeInsets.all(12),
-                children: [
-                  Text(
-                    video.title,
-                    style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
-                  ),
-                  const SizedBox(height: 8),
-                  Text(
-                    '${video.views} • ${video.uploadDate}',
-                    style: TextStyle(color: Colors.grey[600], fontSize: 14),
-                  ),
-                  const SizedBox(height: 16),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      _buildAction(Icons.thumb_up_outlined, 'Like'),
-                      _buildAction(Icons.thumb_down_outlined, 'Dislike'),
-                      _buildAction(Icons.share_outlined, 'Share'),
-                      _buildAction(Icons.download_outlined, 'Download'),
-                      _buildAction(
-                        isFav ? Icons.library_add_check : Icons.library_add_outlined,
-                        'Save',
-                        color: isFav ? Colors.blue : null,
-                        onTap: () => ref.read(favoritesProvider.notifier).toggleFavorite(video.id),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 16),
-                  Row(
-                    children: [
-                      const CircleAvatar(backgroundColor: Colors.grey, child: Icon(Icons.person, color: Colors.white)),
-                      const SizedBox(width: 12),
-                      Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(video.uploader, style: const TextStyle(fontWeight: FontWeight.bold)),
-                            const Text('1.2M subscribers', style: TextStyle(color: Colors.grey, fontSize: 12)),
-                          ],
-                        ),
-                      ),
-                      TextButton(
-                        onPressed: () {},
-                        child: const Text('SUBSCRIBE', style: TextStyle(color: Colors.red, fontWeight: FontWeight.bold)),
-                      ),
-                    ],
-                  ),
-                  const Divider(),
-                  const Text('Up Next', style: TextStyle(fontWeight: FontWeight.bold)),
-                  const SizedBox(height: 12),
-                  if (seriesAsync.isLoading)
-                    const Center(child: CircularProgressIndicator())
-                  else if (suggestedVideos.isEmpty)
-                    const Center(child: Text('No more local videos found.'))
-                  else
-                    ...suggestedVideos.map((v) => Padding(
-                          padding: const EdgeInsets.only(bottom: 12),
-                          child: VideoCard(video: v),
-                        )),
-                ],
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
+  @override
+  void initState() {
+    super.initState();
+    _currentAsset = widget.videoAsset;
+    _loadVideoFile();
   }
 
+  Future<void> _loadVideoFile() async {
+    setState(() {
+      _isLoading = true;
+      _videoFile = null;
+    });
 
-  Widget _buildAction(IconData icon, String label, {Color? color, VoidCallback? onTap}) {
-    return InkWell(
-      onTap: onTap ?? () {},
-      child: Column(
+    // Record watch history
+    ref.read(historyProvider.notifier).recordWatch(_currentAsset.id);
+
+    try {
+      final file = await _currentAsset.file;
+      if (mounted) {
+        setState(() {
+          _videoFile = file;
+          _isLoading = false;
+        });
+      }
+    } catch (e) {
+      if (mounted) {
+        setState(() {
+          _isLoading = false;
+        });
+      }
+    }
+  }
+
+  void _changeVideo(AssetEntity newAsset) {
+    if (newAsset.id == _currentAsset.id) return;
+    setState(() {
+      _currentAsset = newAsset;
+    });
+    _loadVideoFile();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    
+    // Suggested assets from the same album
+    final suggestedAssets = widget.albumAssets;
+
+    final favorites = ref.watch(favoritesProvider);
+    final isFav = favorites.contains(_currentAsset.id);
+
+    final title = _currentAsset.title?.isNotEmpty == true ? _currentAsset.title! : 'مقطع فيديو';
+
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(title, style: const TextStyle(fontWeight: FontWeight.bold)),
+        centerTitle: true,
+      ),
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Icon(icon, color: color),
-          const SizedBox(height: 4),
-          Text(label, style: const TextStyle(fontSize: 12)),
+          // Video Player Container
+          AspectRatio(
+            aspectRatio: 16 / 9,
+            child: Container(
+              color: Colors.black,
+              child: _isLoading
+                  ? const Center(child: CircularProgressIndicator(color: Colors.red))
+                  : _videoFile == null
+                      ? const Center(child: Text('تعذر تحميل ملف الفيديو', style: TextStyle(color: Colors.white)))
+                      : YouTubeVideoPlayer(
+                          key: ValueKey(_currentAsset.id),
+                          videoId: _currentAsset.id,
+                          videoPath: _videoFile!.path,
+                          isShort: false,
+                        ),
+            ),
+          ),
+
+          // Video Info
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        title,
+                        style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                      const SizedBox(height: 4),
+                      Text(
+                        'تم الإنشاء في: ${_currentAsset.createDateTime.toLocal().toString().split(' ')[0]}',
+                        style: TextStyle(color: Colors.grey[600], fontSize: 13),
+                      ),
+                    ],
+                  ),
+                ),
+                IconButton(
+                  icon: Icon(
+                    isFav ? Icons.favorite : Icons.favorite_border,
+                    color: isFav ? Colors.red : null,
+                    size: 28,
+                  ),
+                  onPressed: () {
+                    ref.read(favoritesProvider.notifier).toggleFavorite(_currentAsset.id);
+                  },
+                ),
+              ],
+            ),
+          ),
+          const Divider(),
+
+          // Suggested list header
+          const Padding(
+            padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+            child: Text(
+              'المحتوى المقترح من هذا الألبوم',
+              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+            ),
+          ),
+
+          // Suggested items list
+          Expanded(
+            child: suggestedAssets.isEmpty
+                ? const Center(child: Text('لا توجد مقاطع مقترحة أخرى'))
+                : ListView.builder(
+                    itemCount: suggestedAssets.length,
+                    itemBuilder: (context, index) {
+                      final asset = suggestedAssets[index];
+                      final isCurrent = asset.id == _currentAsset.id;
+                      final isVideo = asset.type == AssetType.video;
+                      final itemTitle = asset.title?.isNotEmpty == true ? asset.title! : (isVideo ? 'مقطع فيديو' : 'صورة');
+
+                      return Container(
+                        color: isCurrent ? theme.colorScheme.primary.withOpacity(0.08) : null,
+                        child: ListTile(
+                          leading: ClipRRect(
+                            borderRadius: BorderRadius.circular(8),
+                            child: SizedBox(
+                              width: 80,
+                              height: 45,
+                              child: Stack(
+                                fit: StackFit.expand,
+                                children: [
+                                  AssetEntityImage(
+                                    asset,
+                                    isOriginal: false,
+                                    thumbnailSize: const ThumbnailSize(200, 200),
+                                    fit: BoxFit.cover,
+                                    errorBuilder: (context, e, s) => Container(color: Colors.grey[300], child: const Icon(Icons.broken_image)),
+                                  ),
+                                  if (isVideo)
+                                    Container(
+                                      color: Colors.black26,
+                                      child: const Center(
+                                        child: Icon(Icons.play_arrow, color: Colors.white, size: 20),
+                                      ),
+                                    ),
+                                ],
+                              ),
+                            ),
+                          ),
+                          title: Text(
+                            itemTitle,
+                            maxLines: 2,
+                            overflow: TextOverflow.ellipsis,
+                            style: TextStyle(
+                              fontWeight: isCurrent ? FontWeight.bold : FontWeight.normal,
+                              color: isCurrent ? theme.colorScheme.primary : null,
+                            ),
+                          ),
+                          subtitle: Text(isVideo ? 'فيديو' : 'صورة'),
+                          onTap: () {
+                            if (isVideo) {
+                              _changeVideo(asset);
+                            } else {
+                              // Open photo viewer
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => PhotoViewerPage(
+                                    assets: suggestedAssets,
+                                    initialIndex: index,
+                                    albumName: 'الألبوم',
+                                  ),
+                                ),
+                              );
+                            }
+                          },
+                        ),
+                      );
+                    },
+                  ),
+          ),
         ],
       ),
     );

@@ -3,7 +3,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ww/features/videos/presentation/pages/home_page.dart';
 import 'package:ww/features/videos/presentation/pages/shorts_page.dart';
 import 'package:ww/features/videos/presentation/pages/library_page.dart';
-import 'package:ww/features/videos/presentation/pages/subscriptions_page.dart';
 
 final navigationIndexProvider = StateProvider<int>((ref) => 0);
 
@@ -17,10 +16,8 @@ class MainWrapper extends ConsumerWidget {
     final List<Widget> pages = [
       const HomePage(),
       const ShortsPage(),
-      const SubscriptionsPage(),
       const LibraryPage(),
     ];
-
 
     return Scaffold(
       body: pages[index],
@@ -31,10 +28,21 @@ class MainWrapper extends ConsumerWidget {
         selectedItemColor: Theme.of(context).colorScheme.primary, // Adapts to theme
         unselectedItemColor: Colors.grey,
         items: const [
-          BottomNavigationBarItem(icon: Icon(Icons.home_outlined), activeIcon: Icon(Icons.home), label: 'Home'),
-          BottomNavigationBarItem(icon: Icon(Icons.play_circle_outline), activeIcon: Icon(Icons.play_circle), label: 'Shorts'),
-          BottomNavigationBarItem(icon: Icon(Icons.subscriptions_outlined), activeIcon: Icon(Icons.subscriptions), label: 'Subscriptions'),
-          BottomNavigationBarItem(icon: Icon(Icons.video_library_outlined), activeIcon: Icon(Icons.video_library), label: 'Library'),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.photo_library_outlined),
+            activeIcon: Icon(Icons.photo_library),
+            label: 'الألبومات',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.play_circle_outline),
+            activeIcon: Icon(Icons.play_circle),
+            label: 'شورتس',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.video_library_outlined),
+            activeIcon: Icon(Icons.video_library),
+            label: 'المكتبة',
+          ),
         ],
       ),
     );

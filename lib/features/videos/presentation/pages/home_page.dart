@@ -1,110 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:ww/features/videos/presentation/pages/video_detail_page.dart';
+import 'package:photo_manager/photo_manager.dart';
+import 'package:photo_manager_image_provider/photo_manager_image_provider.dart';
+import 'package:ww/features/videos/presentation/pages/album_detail_page.dart';
 import 'package:ww/features/videos/presentation/providers/video_provider.dart';
-import 'package:ww/features/videos/domain/models/video_model.dart';
-import 'package:ww/features/videos/domain/models/series_model.dart';
-import 'package:ww/features/videos/presentation/pages/shorts_page.dart';
-import 'package:ww/features/videos/presentation/widgets/video_thumbnail_widget.dart';
 import 'package:ww/features/videos/presentation/widgets/math_gate_dialog.dart';
 import 'package:ww/features/videos/presentation/pages/parental_settings_page.dart';
-import 'series_detail_page.dart';
-
-class SeriesCard extends StatelessWidget {
-  final SeriesModel series;
-
-  const SeriesCard({Key? key, required this.series}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return InkWell(
-      onTap: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => SeriesDetailPage(series: series),
-          ),
-        );
-      },
-      child: Column(
-        children: [
-          Stack(
-            alignment: Alignment.bottomRight,
-            children: [
-              Container(
-                height: 220,
-                width: double.infinity,
-                decoration: BoxDecoration(color: Colors.grey[300]),
-                child: (series.episodes.isNotEmpty)
-                    ? VideoThumbnailWidget(
-                        videoPath: series.episodes.first.videoPath,
-                      )
-                    : const Icon(Icons.video_collection, size: 50),
-              ),
-              Container(
-                margin: const EdgeInsets.all(8),
-                padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 2),
-                decoration: BoxDecoration(
-                  color: Colors.black.withOpacity(0.8),
-                  borderRadius: BorderRadius.circular(4),
-                ),
-                child: Text(
-                  '${series.episodes.length} Videos',
-                  style: const TextStyle(color: Colors.white, fontSize: 12),
-                ),
-              ),
-            ],
-          ),
-          Padding(
-            padding: const EdgeInsets.all(12),
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const CircleAvatar(
-                  backgroundColor: Colors.grey,
-                  child: Icon(Icons.playlist_play, color: Colors.white),
-                ),
-                const SizedBox(width: 12),
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        series.title,
-                        maxLines: 2,
-                        overflow: TextOverflow.ellipsis,
-                        style: const TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 16,
-                        ),
-                      ),
-                      Text(
-                        'Series • ${series.episodes.length} items',
-                        style: TextStyle(color: Colors.grey[600], fontSize: 14),
-                      ),
-                    ],
-                  ),
-                ),
-                const Icon(Icons.more_vert, size: 20),
-              ],
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
 
 final isSearchVisibleProvider = StateProvider<bool>((ref) => false);
+final albumSearchQueryProvider = StateProvider<String>((ref) => '');
 
 class HomePage extends ConsumerWidget {
   const HomePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final videosAsync = ref.watch(latestVideosProvider);
+    final permissionState = ref.watch(photoPermissionProvider);
+    final albumsAsync = ref.watch(visibleAlbumsProvider);
     final isSearchVisible = ref.watch(isSearchVisibleProvider);
-    final searchQuery = ref.watch(searchQueryProvider);
+    final searchQuery = ref.watch(albumSearchQueryProvider);
+    final theme = Theme.of(context);
+    final isDark = theme.brightness == Brightness.dark;
 
     return Scaffold(
       appBar: AppBar(
@@ -112,21 +28,20 @@ class HomePage extends ConsumerWidget {
             ? TextField(
                 autofocus: true,
                 decoration: const InputDecoration(
-                  hintText: 'Search videos...',
+                  hintText: 'البحث عن ألبوم...',
                   border: InputBorder.none,
                 ),
-                onChanged: (val) =>
-                    ref.read(searchQueryProvider.notifier).state = val,
+                onChanged: (val) => ref.read(albumSearchQueryProvider.notifier).state = val,
               )
             : Row(
                 children: [
                   Image.asset('assets/icon.png', height: 32),
                   const SizedBox(width: 8),
                   const Text(
-                    'يوتيوب جوري',
+                    'ألبومات جوري',
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
-                      letterSpacing: -1,
+                      letterSpacing: -0.5,
                     ),
                   ),
                 ],
@@ -135,14 +50,12 @@ class HomePage extends ConsumerWidget {
           IconButton(
             icon: Icon(isSearchVisible ? Icons.close : Icons.search),
             onPressed: () {
-              ref.read(isSearchVisibleProvider.notifier).state =
-                  !isSearchVisible;
+              ref.read(isSearchVisibleProvider.notifier).state = !isSearchVisible;
               if (isSearchVisible) {
-                ref.read(searchQueryProvider.notifier).state = '';
+                ref.read(albumSearchQueryProvider.notifier).state = '';
               }
             },
           ),
-          IconButton(icon: const Icon(Icons.cast), onPressed: () {}),
           IconButton(
             icon: const Icon(Icons.lock_outline),
             onPressed: () async {
@@ -155,70 +68,176 @@ class HomePage extends ConsumerWidget {
               }
             },
           ),
-          const CircleAvatar(
-            radius: 14,
-            backgroundColor: Colors.blueGrey,
-            child: Icon(Icons.person, size: 18, color: Colors.white),
-          ),
-          const SizedBox(width: 12),
+          const SizedBox(width: 8),
         ],
       ),
-      body: videosAsync.when(
-        data: (videos) {
-          final query = searchQuery.toLowerCase();
-          final filtered = videos
-              .where((v) => v.title.toLowerCase().contains(query))
-              .toList();
+      body: _buildBody(context, ref, permissionState, albumsAsync, searchQuery, isDark),
+    );
+  }
 
-          final shortsOnly = filtered.where((v) => v.type == 'short').toList();
-          final normalsOnly = filtered.where((v) => v.type != 'short').toList();
+  Widget _buildBody(
+    BuildContext context,
+    WidgetRef ref,
+    PermissionState permissionState,
+    AsyncValue<List<AssetPathEntity>> albumsAsync,
+    String searchQuery,
+    bool isDark,
+  ) {
+    if (!permissionState.isAuth) {
+      return Center(
+        child: Padding(
+          padding: const EdgeInsets.all(24.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Container(
+                padding: const EdgeInsets.all(20),
+                decoration: BoxDecoration(
+                  color: Colors.red.withOpacity(0.1),
+                  shape: BoxShape.circle,
+                ),
+                child: const Icon(Icons.photo_library_outlined, size: 80, color: Colors.red),
+              ),
+              const SizedBox(height: 24),
+              const Text(
+                'عرض صور طفلك بأمان',
+                style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+                textAlign: TextAlign.center,
+              ),
+              const SizedBox(height: 12),
+              const Text(
+                'نحتاج للوصول إلى ألبوم الصور في جهازك لعرض الألبومات والصور المحددة لطفلك.',
+                style: TextStyle(fontSize: 15, color: Colors.grey),
+                textAlign: TextAlign.center,
+              ),
+              const SizedBox(height: 32),
+              ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.red,
+                  foregroundColor: Colors.white,
+                  padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
+                  elevation: 0,
+                ),
+                onPressed: () {
+                  ref.read(photoPermissionProvider.notifier).requestPermission();
+                },
+                child: const Text(
+                  'إعطاء الصلاحية',
+                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                ),
+              ),
+            ],
+          ),
+        ),
+      );
+    }
 
-          List<dynamic> feedItems = [];
-          
-          int shortIndex = 0;
-          int normalIndex = 0;
-          
-          while (shortIndex < shortsOnly.length || normalIndex < normalsOnly.length) {
-            // Add a shelf of shorts (up to 4)
-            if (shortIndex < shortsOnly.length) {
-              int end = (shortIndex + 4 < shortsOnly.length) ? shortIndex + 4 : shortsOnly.length;
-              feedItems.add(shortsOnly.sublist(shortIndex, end));
-              shortIndex = end;
-            }
+    return albumsAsync.when(
+      data: (albums) {
+        final query = searchQuery.trim().toLowerCase();
+        final filteredAlbums = albums.where((album) {
+          return album.name.toLowerCase().contains(query);
+        }).toList();
 
-            // Add block of normal videos (e.g., 2 videos)
-            for (int i = 0; i < 2; i++) {
-              if (normalIndex < normalsOnly.length) {
-                feedItems.add(normalsOnly[normalIndex]);
-                normalIndex++;
-              }
-            }
-          }
-
-          return ListView.builder(
-            itemCount: feedItems.length,
-            itemBuilder: (context, index) {
-              final item = feedItems[index];
-              if (item is List<VideoModel>) {
-                return ShortsGridWidget(shorts: item);
-              } else {
-                return VideoCard(video: item);
-              }
-            },
+        if (filteredAlbums.isEmpty) {
+          return Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(Icons.folder_open_outlined, size: 64, color: Colors.grey[400]),
+                const SizedBox(height: 16),
+                Text(
+                  query.isEmpty ? 'لا توجد ألبومات معروضة' : 'لم يتم العثور على ألبومات تطابق بحثك',
+                  style: TextStyle(fontSize: 16, color: Colors.grey[600]),
+                ),
+              ],
+            ),
           );
-        },
-        loading: () =>
-            const Center(child: CircularProgressIndicator(color: Colors.red)),
-        error: (e, s) => Center(child: Text('Error loading videos: $e')),
+        }
+
+        return GridView.builder(
+          padding: const EdgeInsets.all(16),
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 2,
+            crossAxisSpacing: 16,
+            mainAxisSpacing: 16,
+            childAspectRatio: 0.82,
+          ),
+          itemCount: filteredAlbums.length,
+          itemBuilder: (context, index) {
+            final album = filteredAlbums[index];
+            return AlbumGridCard(album: album, isDark: isDark);
+          },
+        );
+      },
+      loading: () => const Center(child: CircularProgressIndicator(color: Colors.red)),
+      error: (err, stack) => Center(
+        child: Text(
+          'خطأ في تحميل الألبومات: $err',
+          style: const TextStyle(color: Colors.red),
+        ),
       ),
     );
   }
 }
 
-class VideoCard extends StatelessWidget {
-  final VideoModel video;
+class AlbumGridCard extends StatefulWidget {
+  final AssetPathEntity album;
+  final bool isDark;
 
-  const VideoCard({Key? key, required this.video}) : super(key: key);
+  const AlbumGridCard({Key? key, required this.album, required this.isDark}) : super(key: key);
+
+  @override
+  State<AlbumGridCard> createState() => _AlbumGridCardState();
+}
+
+class _AlbumGridCardState extends State<AlbumGridCard> {
+  AssetEntity? _coverAsset;
+  int _count = 0;
+  bool _isLoading = true;
+
+  @override
+  void initState() {
+    super.initState();
+    _loadCover();
+  }
+
+  @override
+  void didUpdateWidget(covariant AlbumGridCard oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.album.id != widget.album.id) {
+      _loadCover();
+    }
+  }
+
+  Future<void> _loadCover() async {
+    try {
+      final count = await widget.album.assetCountAsync;
+      if (count > 0) {
+        final List<AssetEntity> assets = await widget.album.getAssetListRange(start: 0, end: 1);
+        if (assets.isNotEmpty) {
+          if (mounted) {
+            setState(() {
+              _coverAsset = assets.first;
+              _count = count;
+              _isLoading = false;
+            });
+            return;
+          }
+        }
+      }
+    } catch (e) {
+      // Ignored
+    }
+    if (mounted) {
+      setState(() {
+        _coverAsset = null;
+        _count = 0;
+        _isLoading = false;
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -227,188 +246,74 @@ class VideoCard extends StatelessWidget {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => VideoDetailPage(video: video),
+            builder: (context) => AlbumDetailPage(album: widget.album),
           ),
         );
       },
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Stack(
-            alignment: Alignment.bottomRight,
-            children: [
-              Container(
-                height: 220,
-                width: double.infinity,
-                decoration: BoxDecoration(color: Colors.grey[300]),
-                child: VideoThumbnailWidget(videoPath: video.videoPath),
+          Expanded(
+            child: Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(20),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(widget.isDark ? 0.4 : 0.08),
+                    blurRadius: 8,
+                    offset: const Offset(0, 4),
+                  ),
+                ],
               ),
-              Container(
-                margin: const EdgeInsets.all(8),
-                padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 2),
-                decoration: BoxDecoration(
-                  color: Colors.black.withOpacity(0.8),
-                  borderRadius: BorderRadius.circular(4),
-                ),
-                child: Text(
-                  video.duration,
-                  style: const TextStyle(color: Colors.white, fontSize: 12),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(20),
+                child: Container(
+                  color: widget.isDark ? Colors.grey[900] : Colors.grey[200],
+                  child: _isLoading
+                      ? const Center(child: SizedBox(width: 20, height: 20, child: CircularProgressIndicator(strokeWidth: 2, color: Colors.red)))
+                      : _coverAsset != null
+                          ? AssetEntityImage(
+                              _coverAsset!,
+                              isOriginal: false,
+                              thumbnailSize: const ThumbnailSize(300, 300),
+                              fit: BoxFit.cover,
+                              width: double.infinity,
+                              height: double.infinity,
+                              errorBuilder: (context, error, stackTrace) {
+                                return const Center(child: Icon(Icons.image_not_supported, color: Colors.grey));
+                              },
+                            )
+                          : const Center(
+                              child: Icon(Icons.photo_album_outlined, size: 48, color: Colors.grey),
+                            ),
                 ),
               ),
-            ],
+            ),
           ),
           Padding(
-            padding: const EdgeInsets.all(12),
-            child: Row(
+            padding: const EdgeInsets.only(left: 8, right: 8, top: 10, bottom: 4),
+            child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const CircleAvatar(
-                  backgroundColor: Colors.grey,
-                  child: Icon(Icons.person, color: Colors.white),
-                ),
-                const SizedBox(width: 12),
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        video.title,
-                        maxLines: 2,
-                        overflow: TextOverflow.ellipsis,
-                        style: const TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 16,
-                        ),
-                      ),
-                      Text(
-                        '${video.uploader} • ${video.views} • ${video.uploadDate}',
-                        style: TextStyle(color: Colors.grey[600], fontSize: 14),
-                      ),
-                    ],
+                Text(
+                  widget.album.name,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: const TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 15,
                   ),
                 ),
-                Consumer(
-                  builder: (context, ref, child) {
-                    final isFav = ref
-                        .watch(favoritesProvider)
-                        .contains(video.id);
-                    return IconButton(
-                      icon: Icon(
-                        isFav ? Icons.favorite : Icons.favorite_border,
-                        color: isFav ? Colors.red : null,
-                        size: 20,
-                      ),
-                      onPressed: () => ref
-                          .read(favoritesProvider.notifier)
-                          .toggleFavorite(video.id),
-                    );
-                  },
+                const SizedBox(height: 2),
+                Text(
+                  '$_count عنصر',
+                  style: TextStyle(
+                    color: Colors.grey[600],
+                    fontSize: 13,
+                  ),
                 ),
-                const Icon(Icons.more_vert, size: 20),
               ],
             ),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class ShortsGridWidget extends StatelessWidget {
-  final List<VideoModel> shorts;
-
-  const ShortsGridWidget({Key? key, required this.shorts}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        const Padding(
-          padding: EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-          child: Row(
-            children: [
-              Icon(Icons.amp_stories, color: Colors.red),
-              SizedBox(width: 8),
-              Text(
-                'Shorts',
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-              ),
-            ],
-          ),
-        ),
-        GridView.builder(
-          padding: const EdgeInsets.symmetric(horizontal: 16),
-          shrinkWrap: true,
-          physics: const NeverScrollableScrollPhysics(),
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2,
-            crossAxisSpacing: 12,
-            mainAxisSpacing: 12,
-            childAspectRatio: 0.65,
-          ),
-          itemCount: shorts.length,
-          itemBuilder: (context, index) {
-            return ShortCard(video: shorts[index]);
-          },
-        ),
-        const SizedBox(height: 16),
-        const Divider(height: 6, thickness: 4, color: Color(0xFFE0E0E0)),
-        const SizedBox(height: 16),
-      ],
-    );
-  }
-}
-
-class ShortCard extends StatelessWidget {
-  final VideoModel video;
-
-  const ShortCard({Key? key, required this.video}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return InkWell(
-      onTap: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => const ShortsPage()),
-        );
-      },
-      child: Stack(
-        fit: StackFit.expand,
-        children: [
-          ClipRRect(
-            borderRadius: BorderRadius.circular(12),
-            child: VideoThumbnailWidget(videoPath: video.videoPath, fit: BoxFit.cover),
-          ),
-          Container(
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(12),
-              gradient: LinearGradient(
-                begin: Alignment.bottomCenter,
-                end: Alignment.topCenter,
-                colors: [Colors.black.withOpacity(0.8), Colors.transparent],
-              ),
-            ),
-          ),
-          Positioned(
-            bottom: 8,
-            left: 8,
-            right: 8,
-            child: Text(
-              video.title,
-              maxLines: 3,
-              overflow: TextOverflow.ellipsis,
-              style: const TextStyle(
-                color: Colors.white,
-                fontWeight: FontWeight.bold,
-                fontSize: 13,
-              ),
-            ),
-          ),
-          const Positioned(
-            top: 8,
-            right: 8,
-            child: Icon(Icons.more_vert, color: Colors.white, size: 20),
           ),
         ],
       ),
