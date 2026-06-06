@@ -75,18 +75,12 @@ class PlaylistsPage extends ConsumerWidget {
           );
         }
 
-        return GridView.builder(
-          padding: const EdgeInsets.all(16),
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2,
-            crossAxisSpacing: 16,
-            mainAxisSpacing: 16,
-            childAspectRatio: 0.82,
-          ),
+        return ListView.builder(
+          padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
           itemCount: albums.length,
           itemBuilder: (context, index) {
             final album = albums[index];
-            return PlaylistGridCard(album: album, isDark: isDark);
+            return PlaylistListCard(album: album, isDark: isDark);
           },
         );
       },
@@ -101,17 +95,17 @@ class PlaylistsPage extends ConsumerWidget {
   }
 }
 
-class PlaylistGridCard extends StatefulWidget {
+class PlaylistListCard extends StatefulWidget {
   final AssetPathEntity album;
   final bool isDark;
 
-  const PlaylistGridCard({super.key, required this.album, required this.isDark});
+  const PlaylistListCard({super.key, required this.album, required this.isDark});
 
   @override
-  State<PlaylistGridCard> createState() => _PlaylistGridCardState();
+  State<PlaylistListCard> createState() => _PlaylistListCardState();
 }
 
-class _PlaylistGridCardState extends State<PlaylistGridCard> {
+class _PlaylistListCardState extends State<PlaylistListCard> {
   AssetEntity? _coverAsset;
   int _count = 0;
   bool _isLoading = true;
@@ -123,7 +117,7 @@ class _PlaylistGridCardState extends State<PlaylistGridCard> {
   }
 
   @override
-  void didUpdateWidget(covariant PlaylistGridCard oldWidget) {
+  void didUpdateWidget(covariant PlaylistListCard oldWidget) {
     super.didUpdateWidget(oldWidget);
     if (oldWidget.album.id != widget.album.id) {
       _loadCover();
@@ -160,81 +154,124 @@ class _PlaylistGridCardState extends State<PlaylistGridCard> {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => AlbumDetailPage(album: widget.album),
-          ),
-        );
-      },
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Expanded(
-            child: Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(20),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black.withOpacity(widget.isDark ? 0.4 : 0.08),
-                    blurRadius: 8,
-                    offset: const Offset(0, 4),
-                  ),
-                ],
-              ),
+    final theme = Theme.of(context);
+    final isDark = theme.brightness == Brightness.dark;
+
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 8.0),
+      child: InkWell(
+        onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => AlbumDetailPage(album: widget.album),
+            ),
+          );
+        },
+        borderRadius: BorderRadius.circular(16),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            // Left side: YouTube playlist thumbnail style
+            SizedBox(
+              width: 150,
+              height: 85,
               child: ClipRRect(
-                borderRadius: BorderRadius.circular(20),
+                borderRadius: BorderRadius.circular(12),
                 child: Container(
-                  color: widget.isDark ? Colors.grey[900] : Colors.grey[200],
-                  child: _isLoading
-                      ? const Center(child: SizedBox(width: 20, height: 20, child: CircularProgressIndicator(strokeWidth: 2, color: Colors.red)))
-                      : _coverAsset != null
-                          ? AssetEntityImage(
-                              _coverAsset!,
-                              isOriginal: false,
-                              thumbnailSize: const ThumbnailSize(300, 300),
-                              fit: BoxFit.cover,
-                              width: double.infinity,
-                              height: double.infinity,
-                              errorBuilder: (context, error, stackTrace) {
-                                return const Center(child: Icon(Icons.image_not_supported, color: Colors.grey));
-                              },
-                            )
-                          : const Center(
-                              child: Icon(Icons.photo_album_outlined, size: 48, color: Colors.grey),
-                            ),
+                  color: isDark ? Colors.grey[900] : Colors.grey[200],
+                  child: Stack(
+                    fit: StackFit.expand,
+                    children: [
+                      // Video thumbnail cover
+                      _isLoading
+                          ? const Center(child: SizedBox(width: 16, height: 16, child: CircularProgressIndicator(strokeWidth: 2, color: Colors.red)))
+                          : _coverAsset != null
+                              ? AssetEntityImage(
+                                  _coverAsset!,
+                                  isOriginal: false,
+                                  thumbnailSize: const ThumbnailSize(300, 200),
+                                  fit: BoxFit.cover,
+                                  errorBuilder: (context, error, stackTrace) =>
+                                      const Center(child: Icon(Icons.video_library, color: Colors.grey)),
+                                )
+                              : const Center(child: Icon(Icons.video_library, color: Colors.grey)),
+                      
+                      // Playlist vertical overlay on the right (like YouTube)
+                      Positioned(
+                        right: 0,
+                        top: 0,
+                        bottom: 0,
+                        width: 50,
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: Colors.black.withOpacity(0.8),
+                          ),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                '$_count',
+                                style: const TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 14,
+                                ),
+                              ),
+                              const SizedBox(height: 4),
+                              const Icon(
+                                Icons.playlist_play,
+                                color: Colors.white,
+                                size: 20,
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(left: 8, right: 8, top: 10, bottom: 4),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  widget.album.name,
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                  style: const TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 15,
-                  ),
+            const SizedBox(width: 16),
+            
+            // Right side: Details
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(vertical: 4.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      widget.album.name,
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                      style: const TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 15,
+                        height: 1.2,
+                      ),
+                    ),
+                    const SizedBox(height: 6),
+                    Text(
+                      '$_count مقطع فيديو • قائمة تشغيل',
+                      style: TextStyle(
+                        color: Colors.grey[600],
+                        fontSize: 13,
+                      ),
+                    ),
+                  ],
                 ),
-                const SizedBox(height: 2),
-                Text(
-                  '$_count مقطع فيديو',
-                  style: TextStyle(
-                    color: Colors.grey[600],
-                    fontSize: 13,
-                  ),
-                ),
-              ],
+              ),
             ),
-          ),
-        ],
+            
+            // Options icon
+            IconButton(
+              icon: const Icon(Icons.more_vert, size: 20),
+              onPressed: () {},
+            ),
+          ],
+        ),
       ),
     );
   }

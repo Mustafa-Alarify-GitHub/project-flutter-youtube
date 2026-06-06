@@ -154,7 +154,16 @@ final homeFeedVideosProvider = FutureProvider<List<AssetEntity>>((ref) async {
 
   // Sort by creation date descending (newest first)
   allVideos.sort((a, b) => b.createDateTime.compareTo(a.createDateTime));
-  return allVideos;
+
+  // Deduplicate by ID
+  final seenIds = <String>{};
+  final uniqueVideos = <AssetEntity>[];
+  for (final video in allVideos) {
+    if (seenIds.add(video.id)) {
+      uniqueVideos.add(video);
+    }
+  }
+  return uniqueVideos;
 });
 
 // Shorts videos provider (gets video assets from the designated shorts folder name)
