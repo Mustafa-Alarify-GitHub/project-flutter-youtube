@@ -1,16 +1,13 @@
 plugins {
     id("com.android.application")
     id("kotlin-android")
-    // يجب تطبيق مكوّن فلاتر الإضافي بعد مكوّنات أندرويد وكوتلن
+    // The Flutter Gradle Plugin must be applied after the Android and Kotlin Gradle plugins.
     id("dev.flutter.flutter-gradle-plugin")
 }
 
 android {
-    // المعرّف الخاص بحزمة التطبيق (Package Name)
     namespace = "com.example.ww"
-    
-    // تم تحديثه إلى 34 لحل مشكلة التوافق مع المكتبات الحديثة
-    compileSdk = 34
+    compileSdk = flutter.compileSdkVersion
     ndkVersion = flutter.ndkVersion
 
     compileOptions {
@@ -23,38 +20,25 @@ android {
     }
 
     defaultConfig {
-        // معرف التطبيق الفريد على المتجر
+        // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
         applicationId = "com.example.ww"
-        
-        // يعتمد على أقل نسخة يدعمها فلاتر تلقائياً
+        // You can update the following values to match your application needs.
+        // For more information, see: https://flutter.dev/to/review-gradle-config.
         minSdk = flutter.minSdkVersion
-        
-        // تم تحديثه إلى 34 ليتوافق مع الـ compileSdk
-        targetSdk = 34
-        
-        // يتم جلب رقم الإصدار واسم الإصدار تلقائياً من ملف pubspec.yaml
+        targetSdk = flutter.targetSdkVersion
         versionCode = flutter.versionCode
         versionName = flutter.versionName
     }
 
     buildTypes {
         release {
-            // هنا يتم إعداد التوقيع الرقمي للتطبيق عند رفعه للمتجر
-            // حالياً يستخدم مفتاح الـ debug لتتمكن من تجربة الـ release محلياً
+            // TODO: Add your own signing config for the release build.
+            // Signing with the debug keys for now, so `flutter run --release` works.
             signingConfig = signingConfigs.getByName("debug")
-            
-            // تفعيل حماية وتقليص حجم الكود (اختياري)
-            isMinifyEnabled = false
-            isShrinkResources = false
-            proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
-            )
         }
     }
 }
 
 flutter {
-    // يشير إلى مسار مجلد المشروع الأساسي (الذي يحتوي على مجلد lib)
     source = "../.."
 }

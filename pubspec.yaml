@@ -20,7 +20,7 @@ dependencies:
   flutter_riverpod: 2.5.1
   shared_preferences: 2.2.3
   intl: 0.20.2
-  photo_manager: 2.8.1
+  photo_manager: ^3.0.0
   photo_manager_image_provider: any
 
 dev_dependencies:
