@@ -83,6 +83,26 @@ class HiddenAlbumsNotifier extends StateNotifier<List<String>> {
   bool isHidden(String albumId) => state.contains(albumId);
 }
 
+// Selected active albums for playback (startup selection)
+final selectedAlbumsProvider = StateNotifierProvider<SelectedAlbumsNotifier, List<String>>((ref) {
+  final prefs = ref.watch(sharedPreferencesProvider);
+  return SelectedAlbumsNotifier(prefs);
+});
+
+class SelectedAlbumsNotifier extends StateNotifier<List<String>> {
+  final SharedPreferences prefs;
+  static const _key = 'selected_active_albums';
+
+  SelectedAlbumsNotifier(this.prefs) : super(prefs.getStringList(_key) ?? []);
+
+  void setSelected(List<String> albumIds) {
+    state = albumIds;
+    prefs.setStringList(_key, albumIds);
+  }
+
+  bool isSelected(String albumId) => state.contains(albumId);
+}
+
 // All albums provider (retrieves all paths)
 final allAlbumsProvider = FutureProvider<List<AssetPathEntity>>((ref) async {
   final permission = ref.watch(photoPermissionProvider);
@@ -90,24 +110,51 @@ final allAlbumsProvider = FutureProvider<List<AssetPathEntity>>((ref) async {
     return [];
   }
   return await PhotoManager.getAssetPathList(
-    type: RequestType.common, // load images and videos
+    type: RequestType.video, // load ONLY videos
     hasAll: true,
   );
 });
 
-// Visible albums provider (filters out hidden albums and shorts folder)
+// Visible albums provider (filters based on selected active albums and hides shorts folder)
 final visibleAlbumsProvider = Provider<AsyncValue<List<AssetPathEntity>>>((ref) {
   final allAlbumsAsync = ref.watch(allAlbumsProvider);
-  final hiddenAlbums = ref.watch(hiddenAlbumsProvider);
+  final selectedIds = ref.watch(selectedAlbumsProvider);
   final shortsFolderName = ref.watch(shortsFolderNameProvider).trim().toLowerCase();
 
   return allAlbumsAsync.whenData((albums) {
     return albums.where((album) {
-      if (hiddenAlbums.contains(album.id)) return false;
+      if (!selectedIds.contains(album.id)) return false;
       if (album.name.trim().toLowerCase() == shortsFolderName) return false;
       return true;
     }).toList();
   });
+});
+
+// Home Feed Videos provider (combines all videos from visible folders sorted by date)
+final homeFeedVideosProvider = FutureProvider<List<AssetEntity>>((ref) async {
+  final permission = ref.watch(photoPermissionProvider);
+  if (!permission.isAuth) return [];
+
+  final visibleAlbumsAsync = ref.watch(visibleAlbumsProvider);
+  final albums = visibleAlbumsAsync.value ?? [];
+  if (albums.isEmpty) return [];
+
+  List<AssetEntity> allVideos = [];
+  for (final album in albums) {
+    try {
+      final count = await album.assetCountAsync;
+      if (count > 0) {
+        final assets = await album.getAssetListRange(start: 0, end: count);
+        allVideos.addAll(assets.where((asset) => asset.type == AssetType.video));
+      }
+    } catch (e) {
+      // Ignore directory read errors
+    }
+  }
+
+  // Sort by creation date descending (newest first)
+  allVideos.sort((a, b) => b.createDateTime.compareTo(a.createDateTime));
+  return allVideos;
 });
 
 // Shorts videos provider (gets video assets from the designated shorts folder name)

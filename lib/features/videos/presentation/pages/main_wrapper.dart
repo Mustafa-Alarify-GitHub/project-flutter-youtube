@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ww/features/videos/presentation/pages/home_page.dart';
+import 'package:ww/features/videos/presentation/pages/playlists_page.dart';
 import 'package:ww/features/videos/presentation/pages/shorts_page.dart';
 import 'package:ww/features/videos/presentation/pages/library_page.dart';
 
@@ -15,6 +16,7 @@ class MainWrapper extends ConsumerWidget {
 
     final List<Widget> pages = [
       const HomePage(),
+      const PlaylistsPage(),
       const ShortsPage(),
       const LibraryPage(),
     ];
@@ -29,9 +31,14 @@ class MainWrapper extends ConsumerWidget {
         unselectedItemColor: Colors.grey,
         items: const [
           BottomNavigationBarItem(
-            icon: Icon(Icons.photo_library_outlined),
-            activeIcon: Icon(Icons.photo_library),
-            label: 'الألبومات',
+            icon: Icon(Icons.home_outlined),
+            activeIcon: Icon(Icons.home),
+            label: 'الرئيسية',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.playlist_play_outlined),
+            activeIcon: Icon(Icons.playlist_play),
+            label: 'قوائم التشغيل',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.play_circle_outline),

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:photo_manager/photo_manager.dart';
 import 'package:photo_manager_image_provider/photo_manager_image_provider.dart';
-import 'package:ww/features/videos/presentation/pages/photo_viewer_page.dart';
 import 'package:ww/features/videos/presentation/pages/video_detail_page.dart';
 
 class AlbumDetailPage extends StatefulWidget {
@@ -48,9 +47,9 @@ class _AlbumDetailPageState extends State<AlbumDetailPage> {
       size: _pageSize,
     );
 
-    // Include both images and videos
+    // Include only videos
     final List<AssetEntity> mediaAssets = newAssets.where((asset) {
-      return asset.type == AssetType.image || asset.type == AssetType.video;
+      return asset.type == AssetType.video;
     }).toList();
 
     setState(() {
@@ -122,28 +121,15 @@ class _AlbumDetailPageState extends State<AlbumDetailPage> {
 
                       return GestureDetector(
                         onTap: () {
-                          if (isVideo) {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => VideoDetailPage(
-                                  videoAsset: asset,
-                                  albumAssets: _assets,
-                                ),
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => VideoDetailPage(
+                                videoAsset: asset,
+                                albumAssets: _assets,
                               ),
-                            );
-                          } else {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => PhotoViewerPage(
-                                  assets: _assets,
-                                  initialIndex: index,
-                                  albumName: widget.album.name,
-                                ),
-                              ),
-                            );
-                          }
+                            ),
+                          );
                         },
                         child: Hero(
                           tag: 'photo_${asset.id}',

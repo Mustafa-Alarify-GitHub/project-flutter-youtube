@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:ww/features/videos/presentation/pages/main_wrapper.dart';
+import 'package:ww/features/videos/presentation/pages/album_selection_page.dart';
 import 'package:ww/features/videos/presentation/widgets/parental_wrapper.dart';
 import 'package:ww/features/videos/presentation/providers/video_provider.dart';
 
@@ -55,7 +55,7 @@ class MyApp extends StatelessWidget {
       builder: (context, child) {
         return ParentalWrapper(child: child!);
       },
-      home: const MainWrapper(),
+      home: const AlbumSelectionPage(),
     );
   }
 }

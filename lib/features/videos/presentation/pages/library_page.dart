@@ -3,7 +3,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:photo_manager/photo_manager.dart';
 import 'package:photo_manager_image_provider/photo_manager_image_provider.dart';
 import 'package:ww/features/videos/presentation/providers/video_provider.dart';
-import 'package:ww/features/videos/presentation/pages/photo_viewer_page.dart';
 import 'package:ww/features/videos/presentation/pages/video_detail_page.dart';
 
 class LibraryPage extends ConsumerWidget {
@@ -68,28 +67,15 @@ class LibraryPage extends ConsumerWidget {
                         margin: const EdgeInsets.only(right: 12),
                         child: InkWell(
                           onTap: () {
-                            if (isVideo) {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => VideoDetailPage(
-                                    videoAsset: asset,
-                                    albumAssets: assets,
-                                  ),
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => VideoDetailPage(
+                                  videoAsset: asset,
+                                  albumAssets: assets,
                                 ),
-                              );
-                            } else {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => PhotoViewerPage(
-                                    assets: assets,
-                                    initialIndex: index,
-                                    albumName: 'سجل المشاهدة',
-                                  ),
-                                ),
-                              );
-                            }
+                              ),
+                            );
                           },
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -216,28 +202,15 @@ class LibraryPage extends ConsumerWidget {
 
                       return InkWell(
                         onTap: () {
-                          if (isVideo) {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => VideoDetailPage(
-                                  videoAsset: asset,
-                                  albumAssets: assets,
-                                ),
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => VideoDetailPage(
+                                videoAsset: asset,
+                                albumAssets: assets,
                               ),
-                            );
-                          } else {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => PhotoViewerPage(
-                                  assets: assets,
-                                  initialIndex: index,
-                                  albumName: 'المفضلة',
-                                ),
-                              ),
-                            );
-                          }
+                            ),
+                          );
                         },
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(12),
